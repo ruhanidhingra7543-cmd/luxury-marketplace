@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Tracking - Aureate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1b1d0e",
+                        "on-secondary-fixed": "#3e0500",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#802918",
+                        "secondary": "#9f402d",
+                        "primary-fixed-dim": "#bfc2ff",
+                        "on-secondary": "#ffffff",
+                        "background": "#fbfbe2",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e4e4cc",
+                        "surface-tint": "#4b53bc",
+                        "surface-container": "#efefd7",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#777eea",
+                        "surface-container-low": "#f5f5dc",
+                        "primary-container": "#000080",
+                        "inverse-on-surface": "#f2f2d9",
+                        "primary-fixed": "#e0e0ff",
+                        "surface-dim": "#dbdcc3",
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "on-secondary-container": "#732010",
+                        "outline": "#767684",
+                        "secondary-container": "#fd876f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary": "#00003c",
+                        "inverse-primary": "#bfc2ff",
+                        "on-surface-variant": "#464653",
+                        "outline-variant": "#c6c5d5",
+                        "on-tertiary-fixed": "#241a00",
+                        "tertiary": "#735c00",
+                        "surface-container-highest": "#e4e4cc",
+                        "on-primary-fixed": "#00006e",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303221",
+                        "tertiary-fixed": "#ffe088",
+                        "surface": "#fbfbe2",
+                        "tertiary-container": "#cca830",
+                        "on-primary-fixed-variant": "#3239a3",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fbfbe2",
+                        "secondary-fixed": "#ffdad3",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-tertiary-container": "#4f3e00",
+                        "surface-container-high": "#eaead1",
+                        "on-background": "#1b1d0e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "48px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        .shadow-lifted {
+            box-shadow: 0px 10px 30px rgba(0, 0, 60, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky bg-background dark:bg-on-background flex justify-between items-center px-container-margin py-unit z-50">
+<button aria-label="Menu" class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg tracking-widest text-primary dark:text-primary-fixed-dim">
+            AUREATE
+        </div>
+<button aria-label="Notifications" class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="px-container-margin max-w-5xl mx-auto pt-8">
+<!-- Header Section -->
+<div class="mb-section-gap">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">Track Order</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Order #AUR-8472-X9</p>
+</div>
+<!-- Tracking Map & Status Container -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-container-margin mb-section-gap">
+<!-- Map View -->
+<div class="rounded-xl overflow-hidden shadow-lifted bg-surface-container relative h-80 lg:h-full min-h-[320px]">
+<img alt="Map tracking shipment" class="w-full h-full object-cover absolute inset-0" data-alt="A stylized, minimalist map view showing a delivery route. The map should use a serene palette of cream, neutral beige, and soft navy blue lines to indicate roads and paths. A clean, modern aesthetic with no cluttered labels, just a simple path highlighting the journey from point A to point B in a luxury lifestyle context. The lighting is bright and soft." data-location="New York, NY" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAic9_h7URxFCPz_HnbwLnxTzMbKdEJnRI9gV5qwHPiUWBnNWMlFpGesK8LeULEHtsWwZ_hsc3iLUeKC2kdQQCzeC--dyhC32LPmWKbUgQy2PVZ3GMRYPEPV3M2o6AMB-8ElHsDBD9c4B9UNL0FpBkHwHJ5CFhanWXPjlGvmTD40tSLZqD1lI8NPt9o2cJAIcuo39ruLN0udifkPINEghCkHhgPZQmIia-9Vr0aTKIpfReaCX9JOEwYQA"/>
+<!-- Map Overlay Elements (Optional decorative) -->
+<div class="absolute bottom-4 left-4 right-4 bg-surface/90 backdrop-blur-sm p-4 rounded-lg flex items-center justify-between shadow-lifted border border-surface-variant">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Est. Arrival</p>
+<p class="font-title-md text-title-md text-primary">Today, 2:30 PM</p>
+</div>
+<div class="bg-primary-container text-on-primary-container p-2 rounded-full">
+<span class="material-symbols-outlined fill-icon" data-icon="local_shipping" data-weight="fill">local_shipping</span>
+</div>
+</div>
+</div>
+<!-- Status & Details -->
+<div class="flex flex-col gap-container-margin">
+<!-- Status Timeline -->
+<div class="bg-surface-container-low rounded-xl p-6 shadow-lifted">
+<h2 class="font-title-md text-title-md text-primary mb-6">Delivery Status</h2>
+<div class="relative pl-6 space-y-8 before:absolute before:inset-0 before:ml-[11px] before:-translate-x-px before:h-full before:w-0.5 before:bg-surface-variant">
+<!-- Step 1: Ordered (Completed) -->
+<div class="relative z-10 flex items-start group">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center absolute -left-[29px] ring-4 ring-surface-container-low">
+<span class="material-symbols-outlined text-white text-[14px]" data-icon="check" data-weight="fill">check</span>
+</div>
+<div class="flex-1">
+<h3 class="font-body-lg text-body-lg text-primary font-semibold">Order Placed</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Oct 24, 2023 - 09:41 AM</p>
+</div>
+</div>
+<!-- Step 2: Processing (Completed) -->
+<div class="relative z-10 flex items-start group">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center absolute -left-[29px] ring-4 ring-surface-container-low">
+<span class="material-symbols-outlined text-white text-[14px]" data-icon="check" data-weight="fill">check</span>
+</div>
+<div class="flex-1">
+<h3 class="font-body-lg text-body-lg text-primary font-semibold">Processing</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Oct 25, 2023 - 11:20 AM</p>
+</div>
+</div>
+<!-- Step 3: Shipped (Completed) -->
+<div class="relative z-10 flex items-start group">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center absolute -left-[29px] ring-4 ring-surface-container-low">
+<span class="material-symbols-outlined text-white text-[14px]" data-icon="check" data-weight="fill">check</span>
+</div>
+<div class="flex-1">
+<h3 class="font-body-lg text-body-lg text-primary font-semibold">Shipped</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Oct 26, 2023 - 08:15 AM</p>
+</div>
+</div>
+<!-- Step 4: Out for Delivery (Active) -->
+<div class="relative z-10 flex items-start group">
+<div class="w-6 h-6 rounded-full bg-surface-container-low border-2 border-secondary flex items-center justify-center absolute -left-[29px] ring-4 ring-surface-container-low">
+<div class="w-2 h-2 bg-secondary rounded-full"></div>
+</div>
+<div class="flex-1">
+<h3 class="font-body-lg text-body-lg text-secondary font-semibold">Out for Delivery</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Arriving shortly</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Courier Info -->
+<div class="bg-surface-container-low rounded-xl p-6 shadow-lifted">
+<h2 class="font-title-md text-title-md text-primary mb-4">Courier Information</h2>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-variant overflow-hidden flex-shrink-0">
+<img alt="Courier Photo" class="w-full h-full object-cover" data-alt="A close-up portrait of a professional delivery courier in a clean, minimalist uniform. The courier has a friendly, trustworthy expression. The background is a soft, out-of-focus urban setting bathed in bright, natural daylight. The overall image exudes a premium, reliable service aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGA3WRibpsBjDIGtVzxT-WK1zcz-BdqARZsNDHhHWyWr44iYM7VUHUcZcl1462USQvmZ4ciVkDWHVEECoCJp1MfKlBCq8MFVAW35VHENe8pMjDA690B-s68WslbfAGVVEEZi9ww_swdWKU2OrD9t9a4UG_o5wmN8CyG03KGjB-dzdzJ1rAcHBrFBl6T78gg_3tbJ7dtc3xW7eD6Vrwl9t9rj4aqoiAwYKBeYtJ-m7iLmqSkR2uRFj5KA"/>
+</div>
+<div class="flex-1">
+<h3 class="font-body-lg text-body-lg text-primary font-semibold">James W.</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Premium Logistics</p>
+</div>
+<button aria-label="Contact Courier" class="bg-primary text-white p-3 rounded-full hover:bg-primary-fixed-variant transition-colors shadow-lifted flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container-low dark:bg-inverse-surface shadow-[0px_-2px_10px_rgba(0,0,60,0.05)] md:hidden">
+<ul class="flex justify-around items-center px-4 py-3 pb-8">
+<li class="flex-1">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps uppercase">Home</span>
+</a>
+</li>
+<li class="flex-1">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="search">search</span>
+<span class="font-label-caps text-label-caps uppercase">Search</span>
+</a>
+</li>
+<li class="flex-1">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-caps text-label-caps uppercase">Cart</span>
+</a>
+</li>
+<li class="flex-1">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1 fill-icon" data-icon="person" data-weight="fill">person</span>
+<span class="font-label-caps text-label-caps uppercase">Profile</span>
+</a>
+</li>
+</ul>
+</nav>
+</body></html>

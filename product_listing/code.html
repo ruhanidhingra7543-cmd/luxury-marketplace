@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AUREATE - Luxury Rugs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1b1d0e",
+                        "on-secondary-fixed": "#3e0500",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#802918",
+                        "secondary": "#9f402d",
+                        "primary-fixed-dim": "#bfc2ff",
+                        "on-secondary": "#ffffff",
+                        "background": "#fbfbe2",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e4e4cc",
+                        "surface-tint": "#4b53bc",
+                        "surface-container": "#efefd7",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#777eea",
+                        "surface-container-low": "#f5f5dc",
+                        "primary-container": "#000080",
+                        "inverse-on-surface": "#f2f2d9",
+                        "primary-fixed": "#e0e0ff",
+                        "surface-dim": "#dbdcc3",
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "on-secondary-container": "#732010",
+                        "outline": "#767684",
+                        "secondary-container": "#fd876f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary": "#00003c",
+                        "inverse-primary": "#bfc2ff",
+                        "on-surface-variant": "#464653",
+                        "outline-variant": "#c6c5d5",
+                        "on-tertiary-fixed": "#241a00",
+                        "tertiary": "#735c00",
+                        "surface-container-highest": "#e4e4cc",
+                        "on-primary-fixed": "#00006e",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303221",
+                        "tertiary-fixed": "#ffe088",
+                        "surface": "#fbfbe2",
+                        "tertiary-container": "#cca830",
+                        "on-primary-fixed-variant": "#3239a3",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fbfbe2",
+                        "secondary-fixed": "#ffdad3",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-tertiary-container": "#4f3e00",
+                        "surface-container-high": "#eaead1",
+                        "on-background": "#1b1d0e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "48px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Hide scrollbar for horizontal scroll areas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-body-lg flex flex-col pb-[88px] md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-on-background w-full top-0 sticky z-40 bg-background dark:bg-on-background shadow-none border-none">
+<div class="flex justify-between items-center px-container-margin py-unit w-full max-w-7xl mx-auto">
+<button class="text-on-surface-variant dark:text-outline-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform flex items-center justify-center p-2 rounded-full">
+<span class="material-symbols-outlined text-2xl text-primary dark:text-primary-fixed-dim">menu</span>
+</button>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg tracking-widest text-primary dark:text-primary-fixed-dim">AUREATE</h1>
+<button class="text-on-surface-variant dark:text-outline-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform flex items-center justify-center p-2 rounded-full">
+<span class="material-symbols-outlined text-2xl text-primary dark:text-primary-fixed-dim">notifications</span>
+</button>
+</div>
+<!-- Desktop Nav Cluster (Hidden on Mobile) -->
+<nav class="hidden md:flex justify-center gap-8 py-4 px-container-margin w-full max-w-7xl mx-auto border-t border-surface-variant/30">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-80 transition-opacity" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1" href="#">Search</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-80 transition-opacity" href="#">Cart</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-80 transition-opacity" href="#">Profile</a>
+</nav>
+</header>
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-margin pb-section-gap">
+<!-- Page Header & Search -->
+<div class="pt-unit pb-6 flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Luxury Rugs</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Explore our curated collection of handcrafted textiles.</p>
+</div>
+<!-- Integrated Search Bar -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container rounded-full py-4 pl-12 pr-4 text-body-lg font-body-lg text-on-surface focus:outline-none focus:ring-2 focus:ring-surface-tint border-none placeholder:text-outline" placeholder="Search by style, material, or origin..." type="text"/>
+<button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-on-primary rounded-full p-2 hover:opacity-90 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">tune</span>
+</button>
+</div>
+</div>
+<!-- Filters (Scrollable Row) -->
+<div class="flex overflow-x-auto no-scrollbar gap-gutter pb-6 -mx-container-margin px-container-margin">
+<button class="flex-shrink-0 px-6 py-2 rounded-full border border-primary text-primary font-label-caps text-label-caps hover:bg-surface-container-low transition-colors">Color</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full border border-primary text-primary font-label-caps text-label-caps hover:bg-surface-container-low transition-colors">Size</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full border-none bg-secondary text-on-secondary font-label-caps text-label-caps shadow-sm">Material</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full border border-primary text-primary font-label-caps text-label-caps hover:bg-surface-container-low transition-colors">Price</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full border border-outline text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-low transition-colors">Style</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full border border-outline text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-low transition-colors">Origin</button>
+</div>
+<!-- Active Filter Indicator -->
+<div class="flex items-center gap-2 pb-6">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active:</span>
+<div class="flex items-center gap-1 bg-surface-container-high px-3 py-1 rounded-full">
+<span class="font-body-sm text-body-sm text-on-surface">Material: Silk</span>
+<button class="flex items-center justify-center"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">close</span></button>
+</div>
+<button class="font-label-caps text-label-caps text-secondary ml-auto hover:underline">Clear All</button>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
+<!-- Product Card 1 -->
+<div class="group flex flex-col gap-3 cursor-pointer">
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="A close-up, top-down view of a luxurious hand-knotted silk rug in a minimalist, light-mode setting. The rug features an intricate, muted geometric pattern in shades of soft beige, cream, and deep navy blue. The lighting is soft and diffused, emphasizing the subtle sheen and tactile texture of the silk fibers. The overall aesthetic is refined, serene, and sophisticated, perfectly aligned with a high-end interior design catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgEvt6HGDSCwMbUacNmaiTC3uodFq4PDIUvrpAabvUcYs6oRGGPXfJ44G63Ly6fnEitcDnz2LxlNGuHI7--DwGllJdwsdUnytReZ2KG0sWVsQsvBvOuG7Y8mJLdLec_E1B11m4SE2qDzLhADL81y32S-wUNC1gbB3eh33cLcxxB8Yps6xlLrEcmxa3czsdqvLvRrR9R7aiFeVEQ9YKcXaYI9OO4loZykG254Fl3z64Bs1lHd7SJr3zVQ"/>
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-surface/80 backdrop-blur-sm text-on-surface hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<!-- Wholesale Badge (Example) -->
+<div class="absolute bottom-3 left-3 px-2 py-1 bg-surface/90 border border-tertiary text-tertiary font-label-caps text-[10px] rounded backdrop-blur-sm shadow-sm">
+                        Trade
+                    </div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-on-surface line-clamp-1">Kashan Silk Weave</h3>
+<div class="flex items-center gap-0.5 mt-1">
+<span class="material-symbols-outlined fill text-[14px] text-tertiary-container">star</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">4.9</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Hand-knotted Silk • 8x10</p>
+<div class="mt-1 flex items-center bg-tertiary-container/10 w-fit px-2 py-0.5 rounded">
+<span class="font-title-md text-[16px] text-primary">$4,200</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group flex flex-col gap-3 cursor-pointer">
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="An elegant, modern abstract rug displayed flat on a pristine, light cream background. The rug's design consists of flowing, organic watercolor-like stains in gentle navy blue and soft terracotta over a warm beige canvas. The lighting is high-key and studio quality, casting no harsh shadows, focusing entirely on the premium blend of wool and silk materials. The mood is quiet luxury and contemporary chic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9vGCd3th0h_XslsT-MxaC48W3lIcfz4P6NWIfIjbqIrc7yEvzDQ7zmtOV6N31m6jMlmYMg6029NdcX2_d8wDsx_gfYpqxPDUSU4Z-VZVoe941e3FAkzflr8sfkRP8AI7gKbKVybv7MxIbxLnWd9_9L1sv3AYBTXserzyN23RofOXZTxulznGJeJIN9R5bfdHvHMQaMkW3ZMTZq-txu6w5Id-eN6Q_KSfmPWypGPYSUKRaBNdoeNp4JA"/>
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-surface/80 backdrop-blur-sm text-on-surface hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-on-surface line-clamp-1">Azure Flow</h3>
+<div class="flex items-center gap-0.5 mt-1">
+<span class="material-symbols-outlined fill text-[14px] text-tertiary-container">star</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">4.7</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Wool &amp; Silk Blend • 9x12</p>
+<div class="mt-1 flex items-center bg-tertiary-container/10 w-fit px-2 py-0.5 rounded">
+<span class="font-title-md text-[16px] text-primary">$3,850</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group flex flex-col gap-3 cursor-pointer">
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="A tightly woven, flat-weave kilim rug presented in a bright, minimalist environment. The rug showcases a precise, repetitive diamond motif in muted terracotta, subtle gold, and dark navy lines against a natural beige base. The texture is noticeably coarser, indicative of natural jute and wool fibers. The high-key, even lighting highlights the craftsmanship and artisanal quality, evoking a sense of warm, understated luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu5yAiQwFSQeiXiCYhqgbXCEeD0zuHfKvv6wExt-Jk1zbCwfRuVOC-ZbPDjKTuzZA_CIP7PtX4sR8nTy1jn6iTUXE98riX8UDFHVHauhnl7n-YtDhXVSMMuC1joxpSxSbis571BH03IF1U3S29bArXlK4-i2L0M0DqfEdr8dy2tx9Z0DIk90Q3YKUM_J1GUBLmwA3-hlDNEcKW_QHlRtQ8B1t8D3TtKnhA04v1h4vsZNR7AHKdcATrWA"/>
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-surface/80 backdrop-blur-sm text-secondary transition-colors">
+<span class="material-symbols-outlined fill text-[20px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-on-surface line-clamp-1">Terracotta Kilim</h3>
+<div class="flex items-center gap-0.5 mt-1">
+<span class="material-symbols-outlined fill text-[14px] text-tertiary-container">star</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">5.0</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Flatweave Wool • 6x9</p>
+<div class="mt-1 flex items-center bg-tertiary-container/10 w-fit px-2 py-0.5 rounded">
+<span class="font-title-md text-[16px] text-primary">$1,900</span>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group flex flex-col gap-3 cursor-pointer">
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="A thick, plush Beni Ourain style Moroccan rug viewed from a slight angle to emphasize its deep pile. The rug is a creamy off-white color with an asymmetrical, minimalist dark navy diamond pattern woven loosely throughout. It rests on a pale, polished concrete floor in a light-drenched studio space. The atmosphere conveys cozy, tactile luxury and modern restraint, perfectly fitting a sophisticated minimalist interior." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn_dIizkX-VmqRv200e24e5rES79HZxOgH8mji2WRQnhhmxenMIfHX_Izvdb22MO2JBAC8CCSRUxQhN58EDF7JQ0tTMCZNV-JE_WXjsHP8oBaQVD3Wb4Pg78Lr-3JKdWS2ldY94JwY4TAFlRU6Iot3Xkj5dXpk711gnern9jZUClOoyoivsu5WOVvoHZLqsHa0EsD8q4bZSCbicAqCCeiuHlq-DCX4JXMuOyBeKv3b7qaW79ZnxLAbJg"/>
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-surface/80 backdrop-blur-sm text-on-surface hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-on-surface line-clamp-1">Atlas Shag</h3>
+<div class="flex items-center gap-0.5 mt-1">
+<span class="material-symbols-outlined fill text-[14px] text-tertiary-container">star</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">4.8</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">High-Pile Wool • 10x14</p>
+<div class="mt-1 flex items-center bg-tertiary-container/10 w-fit px-2 py-0.5 rounded">
+<span class="font-title-md text-[16px] text-primary">$5,400</span>
+</div>
+</div>
+</div>
+<!-- More cards could be added here for a fuller grid -->
+</div>
+<!-- Load More Button -->
+<div class="w-full flex justify-center mt-section-gap">
+<button class="px-8 py-4 bg-primary text-on-primary font-title-md text-title-md rounded shadow-[0px_10px_30px_rgba(0,0,60,0.08)] hover:opacity-90 transition-opacity active:scale-95 transition-transform">
+                Load More Textures
+            </button>
+</div>
+</main>
+<!-- BottomNavBar (Visible only on Mobile) -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container-low dark:bg-inverse-surface shadow-[0px_-2px_10px_rgba(0,0,60,0.05)] border-none md:hidden">
+<div class="flex justify-around items-center px-4 py-3 pb-8">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1 fill">search</span>
+<span class="font-label-caps text-label-caps">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1">shopping_bag</span>
+<span class="font-label-caps text-label-caps">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

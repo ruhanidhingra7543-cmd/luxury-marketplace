@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Artisanal Thread</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface": "#1b1d0e",
+                      "on-secondary-fixed": "#3e0500",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#802918",
+                      "secondary": "#9f402d",
+                      "primary-fixed-dim": "#bfc2ff",
+                      "on-secondary": "#ffffff",
+                      "background": "#fbfbe2",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e4e4cc",
+                      "surface-tint": "#4b53bc",
+                      "surface-container": "#efefd7",
+                      "on-primary": "#ffffff",
+                      "on-primary-container": "#777eea",
+                      "surface-container-low": "#f5f5dc",
+                      "primary-container": "#000080",
+                      "inverse-on-surface": "#f2f2d9",
+                      "primary-fixed": "#e0e0ff",
+                      "surface-dim": "#dbdcc3",
+                      "secondary-fixed-dim": "#ffb4a5",
+                      "on-secondary-container": "#732010",
+                      "outline": "#767684",
+                      "secondary-container": "#fd876f",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error": "#ffffff",
+                      "primary": "#00003c",
+                      "inverse-primary": "#bfc2ff",
+                      "on-surface-variant": "#464653",
+                      "outline-variant": "#c6c5d5",
+                      "on-tertiary-fixed": "#241a00",
+                      "tertiary": "#735c00",
+                      "surface-container-highest": "#e4e4cc",
+                      "on-primary-fixed": "#00006e",
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#303221",
+                      "tertiary-fixed": "#ffe088",
+                      "surface": "#fbfbe2",
+                      "tertiary-container": "#cca830",
+                      "on-primary-fixed-variant": "#3239a3",
+                      "tertiary-fixed-dim": "#e9c349",
+                      "on-tertiary": "#ffffff",
+                      "surface-bright": "#fbfbe2",
+                      "secondary-fixed": "#ffdad3",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "on-tertiary-container": "#4f3e00",
+                      "surface-container-high": "#eaead1",
+                      "on-background": "#1b1d0e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-gap": "48px",
+                      "gutter": "16px",
+                      "container-margin": "24px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "title-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.08em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .fade-scale-in {
+            animation: fadeScaleIn 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        @keyframes fadeScaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-background m-0 p-0 h-screen w-screen overflow-hidden flex items-center justify-center font-body-lg text-body-lg text-on-background relative">
+<!-- Background Shader -->
+<!-- STITCH_SHADER_START:ANIMATION_2 class="absolute inset-0 w-full h-full z-0 opacity-40" -->
+<div class="absolute inset-0 w-full h-full z-0 opacity-40" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_2" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_2');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+void main() {
+    vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+    
+    // Subtle weaving pattern effect
+    float line1 = smoothstep(0.48, 0.5, abs(sin(uv.x * 40.0 + uv.y * 10.0 + u_time * 0.2)));
+    float line2 = smoothstep(0.48, 0.5, abs(cos(uv.y * 40.0 - uv.x * 10.0 + u_time * 0.2)));
+    
+    vec3 color1 = vec3(0.96, 0.96, 0.86); // Beige
+    vec3 color2 = vec3(0.0, 0.0, 0.5);   // Navy
+    
+    vec3 finalColor = mix(color1, color2, (line1 * line2) * 0.05);
+    
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_2 -->
+<!-- Content Canvas -->
+<main class="relative z-10 flex flex-col items-center justify-center w-full h-full p-container-margin">
+<div class="fade-scale-in flex flex-col items-center justify-center space-y-gutter">
+<img alt="Artisanal Thread Logo" class="w-64 h-64 object-contain rounded-DEFAULT" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ46oBM12OJlppdpYwQeIkfKdpHDoCXWS1zmNNP34RcaxcXk-ZO85y4SXF-0NMLqzt1JTRsYHH0uS6bQvccnHKFMuvmL1_Xtpz3f3VQsCjMsoA_knQEWqik1eUsN3OcZAsThJvuoip6j0SCoLtPGBOFUH_1IK5c1dnB5A8Kqap2-iF2QyICWQFw8ynW1X7o3ainJ5VhAjEgTKFgVn1rQPgAIiL7-mTlOb_3ON_GepcwohcuGvuzc1K3w"/>
+<h1 class="font-display-lg text-display-lg text-primary tracking-widest uppercase md:font-display-lg md:text-display-lg font-headline-lg-mobile text-headline-lg-mobile">Artisanal Thread</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70 tracking-[0.2em] uppercase mt-unit">Master Weavers</p>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Business Profile Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface": "#1b1d0e",
+                      "on-secondary-fixed": "#3e0500",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#802918",
+                      "secondary": "#9f402d",
+                      "primary-fixed-dim": "#bfc2ff",
+                      "on-secondary": "#ffffff",
+                      "background": "#fbfbe2",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e4e4cc",
+                      "surface-tint": "#4b53bc",
+                      "surface-container": "#efefd7",
+                      "on-primary": "#ffffff",
+                      "on-primary-container": "#777eea",
+                      "surface-container-low": "#f5f5dc",
+                      "primary-container": "#000080",
+                      "inverse-on-surface": "#f2f2d9",
+                      "primary-fixed": "#e0e0ff",
+                      "surface-dim": "#dbdcc3",
+                      "secondary-fixed-dim": "#ffb4a5",
+                      "on-secondary-container": "#732010",
+                      "outline": "#767684",
+                      "secondary-container": "#fd876f",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error": "#ffffff",
+                      "primary": "#00003c",
+                      "inverse-primary": "#bfc2ff",
+                      "on-surface-variant": "#464653",
+                      "outline-variant": "#c6c5d5",
+                      "on-tertiary-fixed": "#241a00",
+                      "tertiary": "#735c00",
+                      "surface-container-highest": "#e4e4cc",
+                      "on-primary-fixed": "#00006e",
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#303221",
+                      "tertiary-fixed": "#ffe088",
+                      "surface": "#fbfbe2",
+                      "tertiary-container": "#cca830",
+                      "on-primary-fixed-variant": "#3239a3",
+                      "tertiary-fixed-dim": "#e9c349",
+                      "on-tertiary": "#ffffff",
+                      "surface-bright": "#fbfbe2",
+                      "secondary-fixed": "#ffdad3",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "on-tertiary-container": "#4f3e00",
+                      "surface-container-high": "#eaead1",
+                      "on-background": "#1b1d0e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-gap": "48px",
+                      "gutter": "16px",
+                      "container-margin": "24px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "title-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.08em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky bg-background dark:bg-on-background z-40">
+<div class="flex justify-between items-center px-container-margin py-unit w-full">
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform text-on-surface-variant dark:text-outline-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<h1 class="font-display-lg text-display-lg tracking-widest text-primary dark:text-primary-fixed-dim">AUREATE</h1>
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform text-on-surface-variant dark:text-outline-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+</div>
+</header>
+<main class="px-container-margin pb-section-gap md:max-w-4xl md:mx-auto">
+<!-- User Profile Header -->
+<section class="mt-section-gap flex flex-col items-center justify-center text-center">
+<div class="relative w-32 h-32 rounded-full overflow-hidden mb-4 shadow-[0px_10px_30px_rgba(0,0,60,0.05)] border-4 border-surface-container-low">
+<img alt="Profile Picture" class="w-full h-full object-cover" data-alt="A professional portrait of an interior designer in a brightly lit studio, looking confident. Minimalist luxury style, high-key lighting, soft beige and neutral tones in the background, conveying expertise and sophistication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8EE6gAmh0UPcGnwQhQ7hzWQ3o1IDLXpjB8CNgDdCVCXWT-H92lzjduj3er9BfO0vT2g31UXn6796yzv6G8reiqTNixwbjhbk6eOM8gpOYKDvoGRpFWdQxkh8SbYwjKOcgSz-vRyENje0l5FIgbEZhX8No3pSKQzLVP4v_0JkDDiE0e9o5xey2BSCOsVLzw5qGvBa_ySvJA86oPiUQJRgeGcIUXAofmA2BSvclMi5u5edoIg9RdlJQpQ"/>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Elena Rostova</h2>
+<div class="inline-flex items-center px-3 py-1 border border-tertiary text-tertiary rounded-full font-label-caps text-label-caps uppercase bg-tertiary-container/10">
+<span class="material-symbols-outlined text-[16px] mr-1" style="font-variation-settings: 'FILL' 1;">storefront</span>
+                Business Account
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-3 max-w-sm">
+                Managing procurement for Rostova Interior Architecture. Wholesale tier active.
+            </p>
+</section>
+<!-- Dashboard Grid -->
+<section class="mt-section-gap grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Order History -->
+<a class="group block bg-surface-container rounded-xl p-6 shadow-[0px_10px_30px_rgba(0,0,60,0.05)] hover:-translate-y-1 transition-transform duration-300" href="#">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-1">Order History</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">View past wholesale orders and track current shipments.</p>
+</a>
+<!-- Saved Products -->
+<a class="group block bg-surface-container rounded-xl p-6 shadow-[0px_10px_30px_rgba(0,0,60,0.05)] hover:-translate-y-1 transition-transform duration-300" href="#">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-1">Saved Collections</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage mood boards and curated client selections.</p>
+</a>
+<!-- Measurement Guides -->
+<a class="group block bg-surface-container rounded-xl p-6 shadow-[0px_10px_30px_rgba(0,0,60,0.05)] hover:-translate-y-1 transition-transform duration-300" href="#">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">square_foot</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-1">Measurement Specs</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Access detailed technical guides for bespoke commissions.</p>
+</a>
+<!-- Tax Information -->
+<a class="group block bg-surface-container rounded-xl p-6 shadow-[0px_10px_30px_rgba(0,0,60,0.05)] hover:-translate-y-1 transition-transform duration-300" href="#">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-tertiary/5 rounded-full flex items-center justify-center text-tertiary group-hover:bg-tertiary group-hover:text-on-tertiary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">receipt_long</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-tertiary transition-colors">arrow_forward</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-1">Tax Documents</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Update resale certificates and download invoices.</p>
+</a>
+<!-- Settings -->
+<a class="group block bg-surface-container rounded-xl p-6 shadow-[0px_10px_30px_rgba(0,0,60,0.05)] hover:-translate-y-1 transition-transform duration-300 md:col-span-2" href="#">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-1">Account Settings</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage team access, shipping addresses, and payment methods.</p>
+</a>
+</section>
+<!-- Logout Action -->
+<div class="mt-8 flex justify-center pb-24 md:pb-8">
+<button class="px-8 py-4 bg-transparent border-none text-secondary font-label-caps text-label-caps uppercase hover:opacity-70 transition-opacity flex items-center">
+<span class="material-symbols-outlined mr-2" style="font-variation-settings: 'FILL' 0;">logout</span>
+                Sign Out
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-8 bg-surface-container-low dark:bg-inverse-surface shadow-[0px_-2px_10px_rgba(0,0,60,0.05)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">search</span>
+<span class="font-label-caps text-label-caps">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant opacity-60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+<span class="font-label-caps text-label-caps">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+</body></html>

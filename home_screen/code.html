@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aureate - Premium Textile Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1b1d0e",
+                        "on-secondary-fixed": "#3e0500",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#802918",
+                        "secondary": "#9f402d",
+                        "primary-fixed-dim": "#bfc2ff",
+                        "on-secondary": "#ffffff",
+                        "background": "#fbfbe2",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e4e4cc",
+                        "surface-tint": "#4b53bc",
+                        "surface-container": "#efefd7",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#777eea",
+                        "surface-container-low": "#f5f5dc",
+                        "primary-container": "#000080",
+                        "inverse-on-surface": "#f2f2d9",
+                        "primary-fixed": "#e0e0ff",
+                        "surface-dim": "#dbdcc3",
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "on-secondary-container": "#732010",
+                        "outline": "#767684",
+                        "secondary-container": "#fd876f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary": "#00003c",
+                        "inverse-primary": "#bfc2ff",
+                        "on-surface-variant": "#464653",
+                        "outline-variant": "#c6c5d5",
+                        "on-tertiary-fixed": "#241a00",
+                        "tertiary": "#735c00",
+                        "surface-container-highest": "#e4e4cc",
+                        "on-primary-fixed": "#00006e",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303221",
+                        "tertiary-fixed": "#ffe088",
+                        "surface": "#fbfbe2",
+                        "tertiary-container": "#cca830",
+                        "on-primary-fixed-variant": "#3239a3",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fbfbe2",
+                        "secondary-fixed": "#ffdad3",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-tertiary-container": "#4f3e00",
+                        "surface-container-high": "#eaead1",
+                        "on-background": "#1b1d0e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "48px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    },
+                    boxShadow: {
+                        'ambient': '0px 10px 30px rgba(0, 0, 60, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg min-h-screen flex flex-col overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container pb-24">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-background flex justify-between items-center px-container-margin py-unit transition-shadow duration-300" id="topAppBar">
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 flex items-center justify-center p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<img alt="Artisanal Thread Logo" class="h-8 w-8 object-contain rounded-md" data-alt="Artisanal Thread: A luxurious and minimalist logo for a high-end textile brand. Gold line art, abstract weaving pattern. Design context: Primary color: #000080. Font: inter. Mode: light. Roundness: rounded-md. The logo should be visually consistent with these brand tokens. Dimensions: 1024x1024. Aspect Ratio: 1.00." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ46oBM12OJlppdpYwQeIkfKdpHDoCXWS1zmNNP34RcaxcXk-ZO85y4SXF-0NMLqzt1JTRsYHH0uS6bQvccnHKFMuvmL1_Xtpz3f3VQsCjMsoA_knQEWqik1eUsN3OcZAsThJvuoip6j0SCoLtPGBOFUH_1IK5c1dnB5A8Kqap2-iF2QyICWQFw8ynW1X7o3ainJ5VhAjEgTKFgVn1rQPgAIiL7-mTlOb_3ON_GepcwohcuGvuzc1K3w"/>
+<span class="font-display-lg md:text-display-lg text-display-lg-mobile tracking-widest text-primary hidden md:inline-block">AUREATE</span>
+</div>
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 flex items-center justify-center p-2 rounded-full hover:bg-surface-variant relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full border border-background"></span>
+</button>
+</header>
+<!-- Search Bar -->
+<div class="px-container-margin py-4 w-full">
+<div class="relative bg-surface-container rounded-full flex items-center px-4 py-3 shadow-ambient transition-all duration-300 focus-within:ring-2 focus-within:ring-primary-container">
+<span class="material-symbols-outlined text-outline mr-3">search</span>
+<input class="bg-transparent border-none outline-none w-full text-body-lg text-on-surface placeholder-outline focus:ring-0" placeholder="Search textures, styles, origins..." type="text"/>
+<button class="ml-2 text-primary p-1 rounded-full hover:bg-surface-variant transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+</div>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col gap-section-gap pt-4">
+<!-- Featured Banner -->
+<section class="px-container-margin w-full">
+<div class="relative w-full h-[400px] rounded-xl overflow-hidden shadow-ambient group cursor-pointer" data-alt="A breathtaking, cinematic wide shot of a luxurious, vast room draped in exquisite, hand-woven silk fabrics. The textiles feature rich, warm tones of terracotta, gold, and deep navy blue. The room is bathed in soft, natural sunlight streaming through tall, arched windows, highlighting the intricate details and shimmering textures of the silk. The aesthetic is highly polished, minimalist yet opulent, perfectly suiting a high-end textile marketplace in a light-mode UI." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDO8PLm2bb7FOgEIPpxUNlaC3otuQ2qRvb2mouSTCK91AFns6x40EDVw6Zv7Jbc7fal49YZBYigh7sF2-TIKrP3cqtLm0jeJFuQbhwXmM8frbZBmAVbvlCfEKtRTxfK54fZhpY4XeRZhHxwA4dpSF68iY5PJop_pEUnwVC8zwt4DkV3nVyLJ5n_V3-2SUHKwDP9hWcfQ6Mm9FmZ1gB9nZaOpJIxhWSjlg17Sfq5bpWlOC_JDFdrKZZFoQ')">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
+<span class="text-label-caps font-label-caps text-tertiary-fixed mb-2 uppercase tracking-widest">New Arrival</span>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-primary mb-4 leading-tight">The Silk Road<br/>Collection</h2>
+<p class="font-body-lg text-body-lg text-primary-fixed mb-6 max-w-md hidden md:block">Discover the ancient artistry of hand-spun silk, reimagined for the modern sanctuary.</p>
+<button class="bg-secondary text-on-secondary font-title-md text-title-md py-4 px-8 rounded-lg shadow-ambient hover:bg-on-secondary-fixed transition-colors w-max active:scale-95 duration-200">
+                        Explore Collection
+                    </button>
+</div>
+</div>
+</section>
+<!-- Categories -->
+<section class="w-full">
+<div class="px-container-margin mb-4 flex justify-between items-end">
+<h3 class="font-title-md text-title-md text-primary">Curated Categories</h3>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-gutter px-container-margin pb-4 snap-x snap-mandatory">
+<!-- Chip 1 -->
+<button class="snap-start shrink-0 bg-secondary text-on-secondary border-none rounded-full px-6 py-3 font-title-md text-title-md flex items-center gap-2 shadow-sm transition-all active:scale-95">
+                    Rugs
+                </button>
+<!-- Chip 2 -->
+<button class="snap-start shrink-0 bg-transparent text-primary border border-primary/20 rounded-full px-6 py-3 font-title-md text-title-md flex items-center gap-2 hover:border-primary/50 transition-all active:scale-95">
+                    Mats
+                </button>
+<!-- Chip 3 -->
+<button class="snap-start shrink-0 bg-transparent text-primary border border-primary/20 rounded-full px-6 py-3 font-title-md text-title-md flex items-center gap-2 hover:border-primary/50 transition-all active:scale-95">
+                    Carpets
+                </button>
+<!-- Chip 4 -->
+<button class="snap-start shrink-0 bg-transparent text-primary border border-primary/20 rounded-full px-6 py-3 font-title-md text-title-md flex items-center gap-2 hover:border-primary/50 transition-all active:scale-95">
+                    Runners
+                </button>
+<!-- Chip 5 -->
+<button class="snap-start shrink-0 bg-transparent text-primary border border-primary/20 rounded-full px-6 py-3 font-title-md text-title-md flex items-center gap-2 hover:border-primary/50 transition-all active:scale-95">
+                    Custom Designs
+                </button>
+</div>
+</section>
+<!-- Trending -->
+<section class="w-full">
+<div class="px-container-margin mb-6 flex justify-between items-center">
+<h3 class="font-title-md text-title-md text-primary">Trending Textiles</h3>
+<button class="text-secondary font-label-caps text-label-caps uppercase tracking-widest hover:underline flex items-center gap-1">
+                    View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-container-margin px-container-margin">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer flex flex-col gap-3 rounded-xl hover:-translate-y-1 transition-transform duration-300">
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-container shadow-ambient">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="A close-up, highly detailed photograph of a hand-knotted wool rug in a minimalist, light-mode setting. The rug features an intricate, abstract geometric pattern in soothing neutral beige and soft cream tones. The lighting is soft and directional, highlighting the rich, tactile texture of the wool fibers. The background is a clean, out-of-focus surface to keep the attention entirely on the textile quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy7hWtCsu0B_sbmZcdFZ6URdoKUl4JmRrvV95ANBg3KOlbVPpyH6r_tr8qr8E2LK4VVBYU6XRFm9brZx6inE9V-mvh7saToLy9gn3WcdyprGmbR0hGo-tB6B4XcjeygWFrtlu3fQWQRQcT2ZaN_NHLCRmEA6BtLxEZkxJI8naPu5cqUxnOMXEqL_F8v7LPk36XZn9qwCRDO3QyURS-WRxjY9qNDOWaWKOJDiiUS_Dw_gurQmE3zBozNQ"/>
+<button class="absolute top-3 right-3 p-2 bg-background/80 backdrop-blur-sm rounded-full text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 bg-tertiary-fixed/90 backdrop-blur-sm text-on-tertiary-fixed px-3 py-1 rounded-sm font-label-caps text-label-caps border border-tertiary-fixed-dim shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">verified</span> Trade
+                        </div>
+</div>
+<div class="flex flex-col">
+<div class="flex justify-between items-start">
+<h4 class="font-title-md text-title-md text-primary group-hover:text-primary-container transition-colors">Atlas Hand-Knotted Wool</h4>
+<span class="bg-surface-container-high text-primary px-3 py-1 rounded-full font-title-md text-title-md shadow-sm">$2,450</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Moroccan Origin • 8' x 10'</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer flex flex-col gap-3 rounded-xl hover:-translate-y-1 transition-transform duration-300">
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-container shadow-ambient">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="A high-resolution product shot of a delicate, vintage-inspired silk runner rug laid elegantly on a polished light oak floor. The rug features faded, intricate floral motifs in muted terracotta and deep navy blue against a cream background. The lighting is bright and diffuse, creating a serene, luxurious atmosphere fitting for a premium textile marketplace. The texture of the silk is vividly captured." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAThMGyl_SJtqp4EvBhrk-GVejJRl8w-8EP4YB11K9W5PPiqPoGoUObyOxso3hyeA6wyBNi92rMkd47pkOpNwwWfxjx5XlWv1gnr6OWOlRmG0Ett1nRL61VtAfieNcR4t-NsTgd_rgH9-5biSqhTNgrSnrqVgtw0LQvHXcRlDayYxNGWbz7DKEFRZFjlh6Ep7Haq_khxBSVymNpUlqhhjYJCQbfAOPANyfYb-GhOyu8RnnjUg-SnGk3Mg"/>
+<button class="absolute top-3 right-3 p-2 bg-background/80 backdrop-blur-sm rounded-full text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<div class="flex flex-col">
+<div class="flex justify-between items-start">
+<h4 class="font-title-md text-title-md text-primary group-hover:text-primary-container transition-colors">Oushak Vintage Silk Runner</h4>
+<span class="bg-surface-container-high text-primary px-3 py-1 rounded-full font-title-md text-title-md shadow-sm">$1,890</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Turkish Origin • 2.5' x 8'</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Visible on Mobile/Tablet) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-8 bg-surface-container-low shadow-[0px_-2px_10px_rgba(0,0,60,0.05)] border-t-0">
+<!-- Home (Active) -->
+<button class="flex flex-col items-center justify-center text-secondary font-bold hover:text-secondary transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<!-- Search -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 hover:text-secondary transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1">search</span>
+<span class="font-label-caps text-label-caps">Search</span>
+</button>
+<!-- Cart -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 hover:text-secondary transition-colors active:scale-90 duration-200 relative">
+<span class="material-symbols-outlined mb-1">shopping_bag</span>
+<span class="font-label-caps text-label-caps">Cart</span>
+<span class="absolute top-0 right-1 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 hover:text-secondary transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple scroll effect for TopAppBar
+        const topAppBar = document.getElementById('topAppBar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                topAppBar.classList.add('shadow-ambient');
+            } else {
+                topAppBar.classList.remove('shadow-ambient');
+            }
+        });
+    </script>
+</body></html>

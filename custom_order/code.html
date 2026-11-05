@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Custom Order - Aureate</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#1b1d0e",
+                        "on-secondary-fixed": "#3e0500",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#802918",
+                        "secondary": "#9f402d",
+                        "primary-fixed-dim": "#bfc2ff",
+                        "on-secondary": "#ffffff",
+                        "background": "#fbfbe2",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e4e4cc",
+                        "surface-tint": "#4b53bc",
+                        "surface-container": "#efefd7",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#777eea",
+                        "surface-container-low": "#f5f5dc",
+                        "primary-container": "#000080",
+                        "inverse-on-surface": "#f2f2d9",
+                        "primary-fixed": "#e0e0ff",
+                        "surface-dim": "#dbdcc3",
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "on-secondary-container": "#732010",
+                        "outline": "#767684",
+                        "secondary-container": "#fd876f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary": "#00003c",
+                        "inverse-primary": "#bfc2ff",
+                        "on-surface-variant": "#464653",
+                        "outline-variant": "#c6c5d5",
+                        "on-tertiary-fixed": "#241a00",
+                        "tertiary": "#735c00",
+                        "surface-container-highest": "#e4e4cc",
+                        "on-primary-fixed": "#00006e",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303221",
+                        "tertiary-fixed": "#ffe088",
+                        "surface": "#fbfbe2",
+                        "tertiary-container": "#cca830",
+                        "on-primary-fixed-variant": "#3239a3",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fbfbe2",
+                        "secondary-fixed": "#ffdad3",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-tertiary-container": "#4f3e00",
+                        "surface-container-high": "#eaead1",
+                        "on-background": "#1b1d0e"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "section-gap": "48px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "unit": "8px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    fontSize: {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom styles for pill checkboxes */
+        .pill-checkbox:checked + label {
+            background-color: theme('colors.secondary');
+            color: theme('colors.on-secondary');
+            border-color: theme('colors.secondary');
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-lg">
+<!-- TopAppBar (From JSON) -->
+<header class="w-full top-0 sticky bg-background flex justify-between items-center px-container-margin py-unit z-50 transition-transform">
+<button class="text-primary hover:opacity-80 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg tracking-widest text-primary">AUREATE</h1>
+<button class="text-primary hover:opacity-80 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-container-margin py-8 md:max-w-2xl md:mx-auto w-full">
+<header class="mb-section-gap text-center">
+<h2 class="font-headline-lg-mobile md:text-headline-lg text-primary mb-2">Bespoke Design Request</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Submit your specifications for a custom crafted rug. Our artisans will review and provide a quotation.</p>
+</header>
+<form class="space-y-section-gap flex flex-col">
+<!-- Step 1: Upload Reference -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-title-md text-title-md text-primary">1. Reference Imagery</h3>
+<span class="material-symbols-outlined text-outline-variant" title="Upload moodboards, sketches, or room photos">info</span>
+</div>
+<div class="border border-dashed border-outline-variant bg-surface-container-low rounded-lg p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary text-[32px] mb-2">upload_file</span>
+<p class="font-body-sm text-body-sm text-primary mb-1">Click to upload or drag and drop</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">SVG, PNG, JPG or PDF (max. 10MB)</p>
+</div>
+</section>
+<!-- Step 2: Dimensions -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-title-md text-title-md text-primary">2. Dimensions</h3>
+<span class="material-symbols-outlined text-outline-variant" title="Specify the final woven size">info</span>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="relative">
+<input class="block w-full bg-transparent border-0 border-b border-outline-variant py-2 focus:ring-0 focus:border-primary font-body-lg text-body-lg text-primary peer" id="width" placeholder=" " required="" type="number"/>
+<label class="absolute text-on-surface-variant font-body-sm text-body-sm duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4" for="width">Width (cm)</label>
+</div>
+<div class="relative">
+<input class="block w-full bg-transparent border-0 border-b border-outline-variant py-2 focus:ring-0 focus:border-primary font-body-lg text-body-lg text-primary peer" id="length" placeholder=" " required="" type="number"/>
+<label class="absolute text-on-surface-variant font-body-sm text-body-sm duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4" for="length">Length (cm)</label>
+</div>
+</div>
+</section>
+<!-- Step 3: Materials -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-title-md text-title-md text-primary">3. Materials</h3>
+<span class="material-symbols-outlined text-outline-variant" title="Select primary fibers for the weave">info</span>
+</div>
+<div class="flex flex-wrap gap-3">
+<div>
+<input class="pill-checkbox hidden" id="mat-wool" type="checkbox"/>
+<label class="cursor-pointer inline-flex items-center px-4 py-2 rounded-full border border-primary text-primary font-body-sm text-body-sm transition-colors" for="mat-wool">
+                            New Zealand Wool
+                        </label>
+</div>
+<div>
+<input class="pill-checkbox hidden" id="mat-silk" type="checkbox"/>
+<label class="cursor-pointer inline-flex items-center px-4 py-2 rounded-full border border-primary text-primary font-body-sm text-body-sm transition-colors" for="mat-silk">
+                            Pure Silk
+                        </label>
+</div>
+<div>
+<input class="pill-checkbox hidden" id="mat-cotton" type="checkbox"/>
+<label class="cursor-pointer inline-flex items-center px-4 py-2 rounded-full border border-primary text-primary font-body-sm text-body-sm transition-colors" for="mat-cotton">
+                            Organic Cotton
+                        </label>
+</div>
+<div>
+<input class="pill-checkbox hidden" id="mat-bamboo" type="checkbox"/>
+<label class="cursor-pointer inline-flex items-center px-4 py-2 rounded-full border border-primary text-primary font-body-sm text-body-sm transition-colors" for="mat-bamboo">
+                            Bamboo Silk
+                        </label>
+</div>
+</div>
+</section>
+<!-- Additional Notes -->
+<section class="space-y-4">
+<div class="relative mt-4">
+<textarea class="block w-full bg-surface-container-low border-0 border-b border-outline-variant py-3 px-4 focus:ring-0 focus:border-primary font-body-sm text-body-sm text-primary rounded-t-DEFAULT resize-none peer" id="notes" placeholder="Any specific design details or knot count preferences..." rows="3"></textarea>
+</div>
+</section>
+<!-- CTA -->
+<div class="pt-8">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-4 rounded-full shadow-[0px_10px_30px_rgba(0,0,60,0.08)] hover:opacity-90 active:scale-95 transition-all flex justify-center items-center gap-2" type="button">
+                    Request Quotation
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</form>
+</main>
+<!-- BottomNavBar Suppressed: This is a task-focused, transactional screen -->
+</body></html>
