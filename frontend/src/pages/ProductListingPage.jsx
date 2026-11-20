@@ -1,14 +1,102 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import TopAppBar from '../components/TopAppBar';
 import BottomNavBar from '../components/BottomNavBar';
+import { getProducts } from '../services/api';
+
+const initialProducts = [
+  {
+    id: 1,
+    title: 'Atlas Hand-Knotted Wool',
+    rating: '4.9',
+    subtitle: "Moroccan Origin • 8' x 10'",
+    price: '$2,450',
+    badge: 'Trade',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBy7hWtCsu0B_sbmZcdFZ6URdoKUl4JmRrvV95ANBg3KOlbVPpyH6r_tr8qr8E2LK4VVBYU6XRFm9brZx6inE9V-mvh7saToLy9gn3WcdyprGmbR0hGo-tB6B4XcjeygWFrtlu3fQWQRQcT2ZaN_NHLCRmEA6BtLxEZkxJI8naPu5cqUxnOMXEqL_F8v7LPk36XZn9qwCRDO3QyURS-WRxjY9qNDOWaWKOJDiiUS_Dw_gurQmE3zBozNQ',
+  },
+  {
+    id: 2,
+    title: 'Oushak Vintage Silk Runner',
+    rating: '4.8',
+    subtitle: "Turkish Origin • 2.5' x 8'",
+    price: '$1,890',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAThMGyl_SJtqp4EvBhrk-GVejJRl8w-8EP4YB11K9W5PPiqPoGoUObyOxso3hyeA6wyBNi92rMkd47pkOpNwwWfxjx5XlWv1gnr6OWOlRmG0Ett1nRL61VtAfieNcR4t-NsTgd_rgH9-5biSqhTNgrSnrqVgtw0LQvHXcRlDayYxNGWbz7DKEFRZFjlh6Ep7Haq_khxBSVymNpUlqhhjYJCQbfAOPANyfYb-GhOyu8RnnjUg-SnGk3Mg',
+  },
+  {
+    id: 3,
+    title: 'Kashan Silk Weave',
+    rating: '4.9',
+    subtitle: "Hand-knotted Silk • 8' x 10'",
+    price: '$4,200',
+    badge: 'Trade',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDgEvt6HGDSCwMbUacNmaiTC3uodFq4PDIUvrpAabvUcYs6oRGGPXfJ44G63Ly6fnEitcDnz2LxlNGuHI7--DwGllJdwsdUnytReZ2KG0sWVsQsvBvOuG7Y8mJLdLec_E1B11m4SE2qDzLhADL81y32S-wUNC1gbB3eh33cLcxxB8Yps6xlLrEcmxa3czsdqvLvRrR9R7aiFeVEQ9YKcXaYI9OO4loZykG254Fl3z64Bs1lHd7SJr3zVQ',
+  },
+  {
+    id: 4,
+    title: 'Azure Flow',
+    rating: '4.7',
+    subtitle: "Wool & Silk Blend • 9' x 12'",
+    price: '$3,850',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB9vGCd3th0h_XslsT-MxaC48W3lIcfz4P6NWIfIjbqIrc7yEvzDQ7zmtOV6N31m6jMlmYMg6029NdcX2_d8wDsx_gfYpqxPDUSU4Z-VZVoe941e3FAkzflr8sfkRP8AI7gKbKVybv7MxIbxLnWd9_9L1sv3AYBTXserzyN23RofOXZTxulznGJeJIN9R5bfdHvHMQaMkW3ZMTZq-txu6w5Id-eN6Q_KSfmPWypGPYSUKRaBNdoeNp4JA',
+  },
+  {
+    id: 5,
+    title: 'Terracotta Kilim',
+    rating: '5.0',
+    subtitle: "Flatweave Wool • 6' x 9'",
+    price: '$1,900',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDu5yAiQwFSQeiXiCYhqgbXCEeD0zuHfKvv6wExt-Jk1zbCwfRuVOC-ZbPDjKTuzZA_CIP7PtX4sR8nTy1jn6iTUXE98riX8UDFHVHauhnl7n-YtDhXVSMMuC1joxpSxSbis571BH03IF1U3S29bArXlK4-i2L0M0DqfEdr8dy2tx9Z0DIk90Q3YKUM_J1GUBLmwA3-hlDNEcKW_QHlRtQ8B1t8D3TtKnhA04v1h4vsZNR7AHKdcATrWA',
+  },
+  {
+    id: 6,
+    title: 'Atlas Shag',
+    rating: '4.8',
+    subtitle: "High-Pile Wool • 10' x 14'",
+    price: '$5,400',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAn_dIizkX-VmqRv200e24e5rES79HZxOgH8mji2WRQnhhmxenMIfHX_Izvdb22MO2JBAC8CCSRUxQhN58EDF7JQ0tTMCZNV-JE_WXjsHP8oBaQVD3Wb4Pg78Lr-3JKdWS2ldY94JwY4TAFlRU6Iot3Xkj5dXpk711gnern9jZUClOoyoivsu5WOVvoHZLqsHa0EsD8q4bZSCbicAqCCeiuHlq-DCX4JXMuOyBeKv3b7qaW79ZnxLAbJg',
+  }
+];
 
 export default function ProductListingPage() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialQuery = searchParams.get('q') || searchParams.get('search') || '';
+  const initialCategory = searchParams.get('category') || '';
+
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedFilter, setSelectedFilter] = useState('Material');
-  const [activeFilterTag, setActiveFilterTag] = useState('Material: Silk');
+  const [activeFilterTag, setActiveFilterTag] = useState(initialCategory ? `Category: ${initialCategory}` : 'Material: Silk');
   const [favorites, setFavorites] = useState({ 3: true });
-  const [visibleCount, setVisibleCount] = useState(4);
+  const [visibleCount, setVisibleCount] = useState(6);
+  const [productsList, setProductsList] = useState(initialProducts);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Fetch products from backend
+  useEffect(() => {
+    setIsLoading(true);
+    const params = {};
+    if (searchQuery.trim()) params.search = searchQuery.trim();
+    if (initialCategory) params.category = initialCategory;
+    if (activeFilterTag.includes('Material: Silk')) params.material = 'Silk';
+
+    getProducts(params)
+      .then(res => {
+        if (res && res.data && res.data.length > 0) {
+          const mapped = res.data.map(p => ({
+            id: p.id,
+            title: p.title,
+            rating: String(p.rating),
+            subtitle: `${p.material} • ${p.dimensions}`,
+            price: p.priceFormatted || `$${p.price.toLocaleString()}`,
+            badge: p.isTrade ? 'Trade' : null,
+            image: p.image,
+            alt: p.description
+          }));
+          setProductsList(mapped);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setIsLoading(false));
+  }, [searchQuery, initialCategory, activeFilterTag]);
 
   const toggleFavorite = (id, e) => {
     e.preventDefault();
@@ -17,50 +105,6 @@ export default function ProductListingPage() {
   };
 
   const filterButtons = ['Color', 'Size', 'Material', 'Price', 'Style', 'Origin'];
-
-  const products = [
-    {
-      id: 1,
-      title: 'Kashan Silk Weave',
-      rating: '4.9',
-      subtitle: 'Hand-knotted Silk • 8x10',
-      price: '$4,200',
-      badge: 'Trade',
-      image:
-        'https://lh3.googleusercontent.com/aida-public/AB6AXuDgEvt6HGDSCwMbUacNmaiTC3uodFq4PDIUvrpAabvUcYs6oRGGPXfJ44G63Ly6fnEitcDnz2LxlNGuHI7--DwGllJdwsdUnytReZ2KG0sWVsQsvBvOuG7Y8mJLdLec_E1B11m4SE2qDzLhADL81y32S-wUNC1gbB3eh33cLcxxB8Yps6xlLrEcmxa3czsdqvLvRrR9R7aiFeVEQ9YKcXaYI9OO4loZykG254Fl3z64Bs1lHd7SJr3zVQ',
-      alt: 'A close-up, top-down view of a luxurious hand-knotted silk rug in a minimalist, light-mode setting. The rug features an intricate, muted geometric pattern in shades of soft beige, cream, and deep navy blue.',
-    },
-    {
-      id: 2,
-      title: 'Azure Flow',
-      rating: '4.7',
-      subtitle: 'Wool & Silk Blend • 9x12',
-      price: '$3,850',
-      image:
-        'https://lh3.googleusercontent.com/aida-public/AB6AXuB9vGCd3th0h_XslsT-MxaC48W3lIcfz4P6NWIfIjbqIrc7yEvzDQ7zmtOV6N31m6jMlmYMg6029NdcX2_d8wDsx_gfYpqxPDUSU4Z-VZVoe941e3FAkzflr8sfkRP8AI7gKbKVybv7MxIbxLnWd9_9L1sv3AYBTXserzyN23RofOXZTxulznGJeJIN9R5bfdHvHMQaMkW3ZMTZq-txu6w5Id-eN6Q_KSfmPWypGPYSUKRaBNdoeNp4JA',
-      alt: 'An elegant, modern abstract rug displayed flat on a pristine, light cream background. The rug design consists of flowing, organic watercolor-like stains in gentle navy blue and soft terracotta over a warm beige canvas.',
-    },
-    {
-      id: 3,
-      title: 'Terracotta Kilim',
-      rating: '5.0',
-      subtitle: 'Flatweave Wool • 6x9',
-      price: '$1,900',
-      image:
-        'https://lh3.googleusercontent.com/aida-public/AB6AXuDu5yAiQwFSQeiXiCYhqgbXCEeD0zuHfKvv6wExt-Jk1zbCwfRuVOC-ZbPDjKTuzZA_CIP7PtX4sR8nTy1jn6iTUXE98riX8UDFHVHauhnl7n-YtDhXVSMMuC1joxpSxSbis571BH03IF1U3S29bArXlK4-i2L0M0DqfEdr8dy2tx9Z0DIk90Q3YKUM_J1GUBLmwA3-hlDNEcKW_QHlRtQ8B1t8D3TtKnhA04v1h4vsZNR7AHKdcATrWA',
-      alt: 'A tightly woven, flat-weave kilim rug presented in a bright, minimalist environment. The rug showcases a precise, repetitive diamond motif in muted terracotta, subtle gold, and dark navy lines against a natural beige base.',
-    },
-    {
-      id: 4,
-      title: 'Atlas Shag',
-      rating: '4.8',
-      subtitle: 'High-Pile Wool • 10x14',
-      price: '$5,400',
-      image:
-        'https://lh3.googleusercontent.com/aida-public/AB6AXuAn_dIizkX-VmqRv200e24e5rES79HZxOgH8mji2WRQnhhmxenMIfHX_Izvdb22MO2JBAC8CCSRUxQhN58EDF7JQ0tTMCZNV-JE_WXjsHP8oBaQVD3Wb4Pg78Lr-3JKdWS2ldY94JwY4TAFlRU6Iot3Xkj5dXpk711gnern9jZUClOoyoivsu5WOVvoHZLqsHa0EsD8q4bZSCbicAqCCeiuHlq-DCX4JXMuOyBeKv3b7qaW79ZnxLAbJg',
-      alt: 'A thick, plush Beni Ourain style Moroccan rug viewed from a slight angle to emphasize its deep pile. The rug is a creamy off-white color with an asymmetrical, minimalist dark navy diamond pattern woven loosely throughout.',
-    },
-  ];
 
   return (
     <div className="bg-background text-on-background min-h-screen font-body-lg flex flex-col pb-[88px] md:pb-0">
@@ -83,7 +127,7 @@ export default function ProductListingPage() {
       {/* Top App Bar */}
       <TopAppBar />
 
-      {/* Desktop Nav Cluster (Hidden on Mobile) */}
+      {/* Desktop Nav Cluster */}
       <nav className="hidden md:flex justify-center gap-8 py-4 px-container-margin w-full max-w-7xl mx-auto border-t border-surface-variant/30">
         <Link
           to="/home"
@@ -138,7 +182,7 @@ export default function ProductListingPage() {
             />
             <button
               type="button"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-on-primary rounded-full p-2 hover:opacity-90 transition-opacity flex items-center justify-center"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-on-primary rounded-full p-2 hover:opacity-90 transition-opacity flex items-center justify-center cursor-pointer"
               aria-label="Search filter"
             >
               <span className="material-symbols-outlined text-sm">tune</span>
@@ -155,7 +199,7 @@ export default function ProductListingPage() {
                 <button
                   key={filter}
                   onClick={() => setSelectedFilter(filter)}
-                  className="flex-shrink-0 px-6 py-2 rounded-full border-none bg-secondary text-on-secondary font-label-caps text-label-caps shadow-sm"
+                  className="flex-shrink-0 px-6 py-2 rounded-full border-none bg-secondary text-on-secondary font-label-caps text-label-caps shadow-sm cursor-pointer"
                 >
                   {filter}
                 </button>
@@ -169,7 +213,7 @@ export default function ProductListingPage() {
                   setSelectedFilter(filter);
                   if (filter === 'Material') setActiveFilterTag('Material: Silk');
                 }}
-                className={`flex-shrink-0 px-6 py-2 rounded-full ${
+                className={`flex-shrink-0 px-6 py-2 rounded-full cursor-pointer ${
                   isBorderOutline
                     ? 'border border-outline text-on-surface-variant'
                     : 'border border-primary text-primary'
@@ -190,7 +234,7 @@ export default function ProductListingPage() {
               <button
                 type="button"
                 onClick={() => setActiveFilterTag('')}
-                className="flex items-center justify-center"
+                className="flex items-center justify-center cursor-pointer"
                 aria-label="Remove filter"
               >
                 <span className="material-symbols-outlined text-[16px] text-on-surface-variant">
@@ -201,7 +245,7 @@ export default function ProductListingPage() {
             <button
               type="button"
               onClick={() => setActiveFilterTag('')}
-              className="font-label-caps text-label-caps text-secondary ml-auto hover:underline"
+              className="font-label-caps text-label-caps text-secondary ml-auto hover:underline cursor-pointer"
             >
               Clear All
             </button>
@@ -210,7 +254,7 @@ export default function ProductListingPage() {
 
         {/* Product Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
-          {products.slice(0, visibleCount).map((product) => {
+          {productsList.slice(0, visibleCount).map((product) => {
             const isFav = !!favorites[product.id];
             return (
               <Link
@@ -271,15 +315,17 @@ export default function ProductListingPage() {
         </div>
 
         {/* Load More Button */}
-        <div className="w-full flex justify-center mt-section-gap">
-          <button
-            type="button"
-            onClick={() => setVisibleCount((prev) => (prev < 8 ? prev + 4 : prev))}
-            className="px-8 py-4 bg-primary text-on-primary font-title-md text-title-md rounded shadow-[0px_10px_30px_rgba(0,0,60,0.08)] hover:opacity-90 transition-opacity active:scale-95 transition-transform"
-          >
-            Load More Textures
-          </button>
-        </div>
+        {visibleCount < productsList.length && (
+          <div className="w-full flex justify-center mt-section-gap">
+            <button
+              type="button"
+              onClick={() => setVisibleCount((prev) => prev + 4)}
+              className="px-8 py-4 bg-primary text-on-primary font-title-md text-title-md rounded shadow-[0px_10px_30px_rgba(0,0,60,0.08)] hover:opacity-90 transition-opacity active:scale-95 transition-transform cursor-pointer"
+            >
+              Load More Textures
+            </button>
+          </div>
+        )}
       </main>
 
       {/* Bottom Nav Bar (Mobile) */}

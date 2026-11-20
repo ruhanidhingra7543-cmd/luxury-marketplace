@@ -2,6 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import TopAppBar from '../components/TopAppBar';
 import BottomNavBar from '../components/BottomNavBar';
+import { getCategories, getTrendingProducts } from '../services/api';
+
+const defaultTrending = [
+  {
+    id: 1,
+    title: 'Atlas Hand-Knotted Wool',
+    price: '$2,450',
+    origin: "Moroccan Origin • 8' x 10'",
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBy7hWtCsu0B_sbmZcdFZ6URdoKUl4JmRrvV95ANBg3KOlbVPpyH6r_tr8qr8E2LK4VVBYU6XRFm9brZx6inE9V-mvh7saToLy9gn3WcdyprGmbR0hGo-tB6B4XcjeygWFrtlu3fQWQRQcT2ZaN_NHLCRmEA6BtLxEZkxJI8naPu5cqUxnOMXEqL_F8v7LPk36XZn9qwCRDO3QyURS-WRxjY9qNDOWaWKOJDiiUS_Dw_gurQmE3zBozNQ',
+    isTrade: true
+  },
+  {
+    id: 2,
+    title: 'Oushak Vintage Silk Runner',
+    price: '$1,890',
+    origin: "Turkish Origin • 2.5' x 8'",
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAThMGyl_SJtqp4EvBhrk-GVejJRl8w-8EP4YB11K9W5PPiqPoGoUObyOxso3hyeA6wyBNi92rMkd47pkOpNwwWfxjx5XlWv1gnr6OWOlRmG0Ett1nRL61VtAfieNcR4t-NsTgd_rgH9-5biSqhTNgrSnrqVgtw0LQvHXcRlDayYxNGWbz7DKEFRZFjlh6Ep7Haq_khxBSVymNpUlqhhjYJCQbfAOPANyfYb-GhOyu8RnnjUg-SnGk3Mg',
+    isTrade: false
+  }
+];
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -9,6 +29,45 @@ export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState('Rugs');
   const [favorites, setFavorites] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
+  const [categoriesList, setCategoriesList] = useState([
+    { name: 'Rugs', path: '/products' },
+    { name: 'Mats', path: '/products' },
+    { name: 'Carpets', path: '/products' },
+    { name: 'Runners', path: '/products' },
+    { name: 'Custom Designs', path: '/custom-order' },
+  ]);
+  const [trendingProducts, setTrendingProducts] = useState(defaultTrending);
+
+  // Fetch from backend API
+  useEffect(() => {
+    getCategories()
+      .then(res => {
+        if (res && res.data && res.data.length > 0) {
+          const mapped = res.data.map(c => ({
+            name: c.name,
+            path: c.id === 'custom' ? '/custom-order' : '/products'
+          }));
+          setCategoriesList(mapped);
+        }
+      })
+      .catch(() => {});
+
+    getTrendingProducts()
+      .then(res => {
+        if (res && res.data && res.data.length > 0) {
+          const mapped = res.data.map(p => ({
+            id: p.id,
+            title: p.title,
+            price: p.priceFormatted || `$${p.price.toLocaleString()}`,
+            origin: `${p.origin} • ${p.dimensions}`,
+            image: p.image,
+            isTrade: p.isTrade
+          }));
+          setTrendingProducts(mapped);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Scroll effect for top app bar shadow
   useEffect(() => {
@@ -34,14 +93,6 @@ export default function HomePage() {
     e.stopPropagation();
     setFavorites(prev => ({ ...prev, [id]: !prev[id] }));
   };
-
-  const categories = [
-    { name: 'Rugs', path: '/products' },
-    { name: 'Mats', path: '/products' },
-    { name: 'Carpets', path: '/products' },
-    { name: 'Runners', path: '/products' },
-    { name: 'Custom Designs', path: '/custom-order' },
-  ];
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -82,7 +133,7 @@ export default function HomePage() {
             <button
               type="button"
               onClick={() => navigate('/products')}
-              className="ml-2 text-primary p-1 rounded-full hover:bg-surface-variant transition-colors flex items-center justify-center"
+              className="ml-2 text-primary p-1 rounded-full hover:bg-surface-variant transition-colors flex items-center justify-center cursor-pointer"
               aria-label="Filter"
             >
               <span className="material-symbols-outlined">tune</span>
@@ -124,7 +175,7 @@ export default function HomePage() {
                   e.stopPropagation();
                   navigate('/products');
                 }}
-                className="bg-secondary text-on-secondary font-title-md text-title-md py-4 px-8 rounded-lg shadow-ambient hover:bg-on-secondary-fixed transition-colors w-max active:scale-95 duration-200"
+                className="bg-secondary text-on-secondary font-title-md text-title-md py-4 px-8 rounded-lg shadow-ambient hover:bg-on-secondary-fixed transition-colors w-max active:scale-95 duration-200 cursor-pointer"
               >
                 Explore Collection
               </button>
@@ -138,7 +189,7 @@ export default function HomePage() {
             <h3 className="font-title-md text-title-md text-primary">Curated Categories</h3>
           </div>
           <div className="flex overflow-x-auto no-scrollbar gap-gutter px-container-margin pb-4 snap-x snap-mandatory">
-            {categories.map((cat) => {
+            {categoriesList.map((cat) => {
               const isActive = activeCategory === cat.name;
               return (
                 <button
@@ -147,13 +198,15 @@ export default function HomePage() {
                     setActiveCategory(cat.name);
                     if (cat.name === 'Custom Designs') {
                       navigate(cat.path);
+                    } else {
+                      navigate(`/products?category=${encodeURIComponent(cat.name)}`);
                     }
                   }}
-                  className={
+                  className={`cursor-pointer ${
                     isActive
                       ? 'snap-start shrink-0 bg-secondary text-on-secondary border-none rounded-full px-6 py-3 font-title-md text-title-md flex items-center gap-2 shadow-sm transition-all active:scale-95'
                       : 'snap-start shrink-0 bg-transparent text-primary border border-primary/20 rounded-full px-6 py-3 font-title-md text-title-md flex items-center gap-2 hover:border-primary/50 transition-all active:scale-95'
-                  }
+                  }`}
                 >
                   {cat.name}
                 </button>
@@ -174,88 +227,52 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-container-margin px-container-margin">
-            {/* Product Card 1 */}
-            <Link
-              to="/product/1"
-              className="group cursor-pointer flex flex-col gap-3 rounded-xl hover:-translate-y-1 transition-transform duration-300"
-            >
-              <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-container shadow-ambient">
-                <img
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  alt="Atlas Hand-Knotted Wool rug"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy7hWtCsu0B_sbmZcdFZ6URdoKUl4JmRrvV95ANBg3KOlbVPpyH6r_tr8qr8E2LK4VVBYU6XRFm9brZx6inE9V-mvh7saToLy9gn3WcdyprGmbR0hGo-tB6B4XcjeygWFrtlu3fQWQRQcT2ZaN_NHLCRmEA6BtLxEZkxJI8naPu5cqUxnOMXEqL_F8v7LPk36XZn9qwCRDO3QyURS-WRxjY9qNDOWaWKOJDiiUS_Dw_gurQmE3zBozNQ"
-                />
-                <button
-                  type="button"
-                  onClick={(e) => toggleFavorite('trend-1', e)}
-                  aria-label="Add to Wishlist"
-                  className="absolute top-3 right-3 p-2 bg-background/80 backdrop-blur-sm rounded-full text-on-surface-variant hover:text-secondary transition-colors"
-                >
-                  <span
-                    className="material-symbols-outlined text-xl"
-                    style={{ fontVariationSettings: favorites['trend-1'] ? "'FILL' 1" : "'FILL' 0" }}
+            {trendingProducts.map((product) => (
+              <Link
+                key={product.id}
+                to={`/product/${product.id}`}
+                className="group cursor-pointer flex flex-col gap-3 rounded-xl hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-container shadow-ambient">
+                  <img
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    alt={product.title}
+                    src={product.image}
+                  />
+                  <button
+                    type="button"
+                    onClick={(e) => toggleFavorite(`trend-${product.id}`, e)}
+                    aria-label="Add to Wishlist"
+                    className="absolute top-3 right-3 p-2 bg-background/80 backdrop-blur-sm rounded-full text-on-surface-variant hover:text-secondary transition-colors"
                   >
-                    favorite
-                  </span>
-                </button>
-                <div className="absolute bottom-3 left-3 bg-tertiary-fixed/90 backdrop-blur-sm text-on-tertiary-fixed px-3 py-1 rounded-sm font-label-caps text-label-caps border border-tertiary-fixed-dim shadow-sm flex items-center gap-1">
-                  <span className="material-symbols-outlined text-xs">verified</span> Trade
+                    <span
+                      className="material-symbols-outlined text-xl"
+                      style={{ fontVariationSettings: favorites[`trend-${product.id}`] ? "'FILL' 1" : "'FILL' 0" }}
+                    >
+                      favorite
+                    </span>
+                  </button>
+                  {product.isTrade && (
+                    <div className="absolute bottom-3 left-3 bg-tertiary-fixed/90 backdrop-blur-sm text-on-tertiary-fixed px-3 py-1 rounded-sm font-label-caps text-label-caps border border-tertiary-fixed-dim shadow-sm flex items-center gap-1">
+                      <span className="material-symbols-outlined text-xs">verified</span> Trade
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex justify-between items-start">
-                  <h4 className="font-title-md text-title-md text-primary group-hover:text-primary-container transition-colors">
-                    Atlas Hand-Knotted Wool
-                  </h4>
-                  <span className="bg-surface-container-high text-primary px-3 py-1 rounded-full font-title-md text-title-md shadow-sm">
-                    $2,450
-                  </span>
+                <div className="flex flex-col">
+                  <div className="flex justify-between items-start">
+                    <h4 className="font-title-md text-title-md text-primary group-hover:text-primary-container transition-colors">
+                      {product.title}
+                    </h4>
+                    <span className="bg-surface-container-high text-primary px-3 py-1 rounded-full font-title-md text-title-md shadow-sm">
+                      {product.price}
+                    </span>
+                  </div>
+                  <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    {product.origin}
+                  </p>
                 </div>
-                <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">
-                  Moroccan Origin • 8' x 10'
-                </p>
-              </div>
-            </Link>
-
-            {/* Product Card 2 */}
-            <Link
-              to="/product/2"
-              className="group cursor-pointer flex flex-col gap-3 rounded-xl hover:-translate-y-1 transition-transform duration-300"
-            >
-              <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-container shadow-ambient">
-                <img
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  alt="Oushak Vintage Silk Runner"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAThMGyl_SJtqp4EvBhrk-GVejJRl8w-8EP4YB11K9W5PPiqPoGoUObyOxso3hyeA6wyBNi92rMkd47pkOpNwwWfxjx5XlWv1gnr6OWOlRmG0Ett1nRL61VtAfieNcR4t-NsTgd_rgH9-5biSqhTNgrSnrqVgtw0LQvHXcRlDayYxNGWbz7DKEFRZFjlh6Ep7Haq_khxBSVymNpUlqhhjYJCQbfAOPANyfYb-GhOyu8RnnjUg-SnGk3Mg"
-                />
-                <button
-                  type="button"
-                  onClick={(e) => toggleFavorite('trend-2', e)}
-                  aria-label="Add to Wishlist"
-                  className="absolute top-3 right-3 p-2 bg-background/80 backdrop-blur-sm rounded-full text-on-surface-variant hover:text-secondary transition-colors"
-                >
-                  <span
-                    className="material-symbols-outlined text-xl"
-                    style={{ fontVariationSettings: favorites['trend-2'] ? "'FILL' 1" : "'FILL' 0" }}
-                  >
-                    favorite
-                  </span>
-                </button>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex justify-between items-start">
-                  <h4 className="font-title-md text-title-md text-primary group-hover:text-primary-container transition-colors">
-                    Oushak Vintage Silk Runner
-                  </h4>
-                  <span className="bg-surface-container-high text-primary px-3 py-1 rounded-full font-title-md text-title-md shadow-sm">
-                    $1,890
-                  </span>
-                </div>
-                <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">
-                  Turkish Origin • 2.5' x 8'
-                </p>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
         </section>
       </main>

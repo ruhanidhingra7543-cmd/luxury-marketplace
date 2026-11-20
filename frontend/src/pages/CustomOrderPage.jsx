@@ -1,11 +1,18 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopAppBar from '../components/TopAppBar';
+import { createCustomOrder } from '../services/api';
 
 export default function CustomOrderPage() {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [selectedFileName, setSelectedFileName] = useState('');
+  const [width, setWidth] = useState('240');
+  const [length, setLength] = useState('300');
+  const [notes, setNotes] = useState('');
+  const [selectedMaterials, setSelectedMaterials] = useState(['mat-wool', 'mat-silk']);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedSuccess, setSubmittedSuccess] = useState(false);
 
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -13,9 +20,41 @@ export default function CustomOrderPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const toggleMaterial = (id) => {
+    setSelectedMaterials(prev =>
+      prev.includes(id) ? prev.filter(m => m !== id) : [...prev, id]
+    );
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/order-tracking');
+    setIsSubmitting(true);
+    try {
+      const materialLabels = {
+        'mat-wool': 'New Zealand Wool',
+        'mat-silk': 'Pure Silk',
+        'mat-cotton': 'Organic Cotton',
+        'mat-bamboo': 'Bamboo Silk'
+      };
+
+      await createCustomOrder({
+        width: Number(width),
+        length: Number(length),
+        materials: selectedMaterials.map(m => materialLabels[m] || m),
+        notes,
+        referenceFile: selectedFileName || null
+      });
+
+      setSubmittedSuccess(true);
+      setTimeout(() => {
+        navigate('/order-tracking');
+      }, 1500);
+    } catch (err) {
+      console.error('Custom order submission error:', err);
+      navigate('/order-tracking');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -38,6 +77,13 @@ export default function CustomOrderPage() {
             Submit your specifications for a custom crafted rug. Our artisans will review and provide a quotation.
           </p>
         </header>
+
+        {submittedSuccess && (
+          <div className="mb-6 p-4 bg-tertiary-fixed/40 border border-tertiary rounded-lg text-center text-primary font-body-sm flex items-center justify-center gap-2">
+            <span className="material-symbols-outlined text-tertiary">check_circle</span>
+            Bespoke request sent to our master weavers! Redirecting...
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-section-gap flex flex-col">
           {/* Step 1: Upload Reference */}
@@ -83,6 +129,8 @@ export default function CustomOrderPage() {
                   placeholder=" "
                   required
                   type="number"
+                  value={width}
+                  onChange={(e) => setWidth(e.target.value)}
                 />
                 <label
                   className="absolute text-on-surface-variant font-body-sm text-body-sm duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
@@ -98,6 +146,8 @@ export default function CustomOrderPage() {
                   placeholder=" "
                   required
                   type="number"
+                  value={length}
+                  onChange={(e) => setLength(e.target.value)}
                 />
                 <label
                   className="absolute text-on-surface-variant font-body-sm text-body-sm duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] peer-focus:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
@@ -118,42 +168,31 @@ export default function CustomOrderPage() {
               </span>
             </div>
             <div className="flex flex-wrap gap-3">
-              <div>
-                <input className="pill-checkbox hidden" id="mat-wool" type="checkbox" />
-                <label
-                  className="cursor-pointer inline-flex items-center px-4 py-2 rounded-full border border-primary text-primary font-body-sm text-body-sm transition-colors"
-                  htmlFor="mat-wool"
-                >
-                  New Zealand Wool
-                </label>
-              </div>
-              <div>
-                <input className="pill-checkbox hidden" id="mat-silk" type="checkbox" />
-                <label
-                  className="cursor-pointer inline-flex items-center px-4 py-2 rounded-full border border-primary text-primary font-body-sm text-body-sm transition-colors"
-                  htmlFor="mat-silk"
-                >
-                  Pure Silk
-                </label>
-              </div>
-              <div>
-                <input className="pill-checkbox hidden" id="mat-cotton" type="checkbox" />
-                <label
-                  className="cursor-pointer inline-flex items-center px-4 py-2 rounded-full border border-primary text-primary font-body-sm text-body-sm transition-colors"
-                  htmlFor="mat-cotton"
-                >
-                  Organic Cotton
-                </label>
-              </div>
-              <div>
-                <input className="pill-checkbox hidden" id="mat-bamboo" type="checkbox" />
-                <label
-                  className="cursor-pointer inline-flex items-center px-4 py-2 rounded-full border border-primary text-primary font-body-sm text-body-sm transition-colors"
-                  htmlFor="mat-bamboo"
-                >
-                  Bamboo Silk
-                </label>
-              </div>
+              {[
+                { id: 'mat-wool', label: 'New Zealand Wool' },
+                { id: 'mat-silk', label: 'Pure Silk' },
+                { id: 'mat-cotton', label: 'Organic Cotton' },
+                { id: 'mat-bamboo', label: 'Bamboo Silk' }
+              ].map(mat => {
+                const checked = selectedMaterials.includes(mat.id);
+                return (
+                  <div key={mat.id}>
+                    <input
+                      className="pill-checkbox hidden"
+                      id={mat.id}
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => toggleMaterial(mat.id)}
+                    />
+                    <label
+                      className="cursor-pointer inline-flex items-center px-4 py-2 rounded-full border border-primary text-primary font-body-sm text-body-sm transition-colors"
+                      htmlFor={mat.id}
+                    >
+                      {mat.label}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           </section>
 
@@ -165,6 +204,8 @@ export default function CustomOrderPage() {
                 id="notes"
                 placeholder="Any specific design details or knot count preferences..."
                 rows="3"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
               ></textarea>
             </div>
           </section>
@@ -172,11 +213,11 @@ export default function CustomOrderPage() {
           {/* CTA */}
           <div className="pt-8">
             <button
-              onClick={() => navigate('/order-tracking')}
-              className="w-full bg-primary text-on-primary font-label-caps text-label-caps py-4 rounded-full shadow-[0px_10px_30px_rgba(0,0,60,0.08)] hover:opacity-90 active:scale-95 transition-all flex justify-center items-center gap-2 cursor-pointer"
-              type="button"
+              disabled={isSubmitting}
+              className="w-full bg-primary text-on-primary font-label-caps text-label-caps py-4 rounded-full shadow-[0px_10px_30px_rgba(0,0,60,0.08)] hover:opacity-90 active:scale-95 transition-all flex justify-center items-center gap-2 cursor-pointer disabled:opacity-50"
+              type="submit"
             >
-              Request Quotation
+              {isSubmitting ? 'Submitting Specifications...' : 'Request Quotation'}
               <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
             </button>
           </div>

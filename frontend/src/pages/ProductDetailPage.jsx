@@ -1,41 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import TopAppBar from '../components/TopAppBar';
+import { getProductById } from '../services/api';
+
+const defaultImages = [
+  {
+    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDliRFfg-7GuYBE2vUAPwL6CTF5sVRbO1_C7Q7lb3qXGFOtzlGP3vu0-I8QlsI-JJHQJRZ6xYpCP3abYjHvzjXL_ssg6pUzIia-gDujVXRPxpqyKPE7RkFU6kerT-sTfD2F6FlwG-M_29w5qLRD4BnMWskqlwEewxwLguOzSad38VBikCfyn5enAnfwMfd7gPRMvZzhC5h7BogLAO1L6PzSXSrYqbsaf3ynyAMWVZXQChWxXpkVT8FsdQ',
+    alt: 'Persian Heritage Runner rug main view',
+  },
+  {
+    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDeS4VjRzUqKfTxiIp1VzGeP34zg6gYvfW6bqBOxtgCRz2PZenJusAiWcHX6mRMXq1NvOWukIBHTtsAmsUmFUEckWRig3cEHuE8PurGu1piE1hKn5ZJC3ZM5_TRBfNBKNtIcW50futpN4EWC0OGonKsf8sdNCeaMsu-GDfUcXaFBhefjWQ88m0iBABotnxzn4jsnku59ApgrzjzJzIk0dBk6FDoPiSZKzF4KyvPP1HxHUiKEtN0sZAFtg',
+    alt: 'Persian Heritage Runner - View 1',
+  },
+  {
+    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDfBBG91LPxOovy8zLR0owP9UlsdpDE2aEBEMv0Z8m2hWySa1CTmqPbD5vsxx1A8tQUz4Y0DrwMirrAqGANBpORAAUatr-_0xtNZe4-MMitcyr6rpLvJQFsRN42WIXiC7xWG9PEOgvHAhSztNL0w_8eHf6zikX28KcXm5p8xTGwf0DcDs8__BIW0kN_mN_hxTRdcNiYMvQIGVoeQqUjFUrq2rTDZIjfP4B-P3P4nw6ssxJmBf53uVi7-g',
+    alt: 'Persian Heritage Runner - View 2',
+  },
+  {
+    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBtTW3Xn3JtlrW-BWHboKENmfqV2JBLqm7W4KY5F_ROVMlHOVLJBFDE8Aherfu3ALsJCm-jQwjsbkJRpxg4F4JQE5sCpRf89zrGdP7ZicAwaKDnnYyDq16WeSgYn72pulDeKDSB7noQoLzL6xdIIUQSya53SaJNOcXhHQBxZ1xzIcx4BHBxJJSePa0rF0wdH58G7rFbtqbKFjPE1eARlKOnDTJhAdsAKt-N2S56qmR5-H9xfgXr22qN6g',
+    alt: 'Persian Heritage Runner - View 3',
+  },
+];
 
 export default function ProductDetailPage() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const galleryImages = [
-    {
-      src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDliRFfg-7GuYBE2vUAPwL6CTF5sVRbO1_C7Q7lb3qXGFOtzlGP3vu0-I8QlsI-JJHQJRZ6xYpCP3abYjHvzjXL_ssg6pUzIia-gDujVXRPxpqyKPE7RkFU6kerT-sTfD2F6FlwG-M_29w5qLRD4BnMWskqlwEewxwLguOzSad38VBikCfyn5enAnfwMfd7gPRMvZzhC5h7BogLAO1L6PzSXSrYqbsaf3ynyAMWVZXQChWxXpkVT8FsdQ',
-      alt: 'Persian Heritage Runner rug main view',
-    },
-    {
-      src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDeS4VjRzUqKfTxiIp1VzGeP34zg6gYvfW6bqBOxtgCRz2PZenJusAiWcHX6mRMXq1NvOWukIBHTtsAmsUmFUEckWRig3cEHuE8PurGu1piE1hKn5ZJC3ZM5_TRBfNBKNtIcW50futpN4EWC0OGonKsf8sdNCeaMsu-GDfUcXaFBhefjWQ88m0iBABotnxzn4jsnku59ApgrzjzJzIk0dBk6FDoPiSZKzF4KyvPP1HxHUiKEtN0sZAFtg',
-      alt: 'Persian Heritage Runner - View 1',
-    },
-    {
-      src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDfBBG91LPxOovy8zLR0owP9UlsdpDE2aEBEMv0Z8m2hWySa1CTmqPbD5vsxx1A8tQUz4Y0DrwMirrAqGANBpORAAUatr-_0xtNZe4-MMitcyr6rpLvJQFsRN42WIXiC7xWG9PEOgvHAhSztNL0w_8eHf6zikX28KcXm5p8xTGwf0DcDs8__BIW0kN_mN_hxTRdcNiYMvQIGVoeQqUjFUrq2rTDZIjfP4B-P3P4nw6ssxJmBf53uVi7-g',
-      alt: 'Persian Heritage Runner - View 2',
-    },
-    {
-      src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBtTW3Xn3JtlrW-BWHboKENmfqV2JBLqm7W4KY5F_ROVMlHOVLJBFDE8Aherfu3ALsJCm-jQwjsbkJRpxg4F4JQE5sCpRf89zrGdP7ZicAwaKDnnYyDq16WeSgYn72pulDeKDSB7noQoLzL6xdIIUQSya53SaJNOcXhHQBxZ1xzIcx4BHBxJJSePa0rF0wdH58G7rFbtqbKFjPE1eARlKOnDTJhAdsAKt-N2S56qmR5-H9xfgXr22qN6g',
-      alt: 'Persian Heritage Runner - View 3',
-    },
-  ];
-
+  const [productData, setProductData] = useState(null);
+  const [galleryImages, setGalleryImages] = useState(defaultImages);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [selectedDimension, setSelectedDimension] = useState("2.5' x 8'");
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('description');
   const [isWishlisted, setIsWishlisted] = useState(false);
 
+  // Fetch product from backend
+  useEffect(() => {
+    if (id) {
+      getProductById(id)
+        .then(res => {
+          if (res && res.data) {
+            const p = res.data;
+            setProductData(p);
+            if (p.gallery && p.gallery.length > 0) {
+              setGalleryImages(p.gallery.map((src, i) => ({
+                src,
+                alt: `${p.title} view ${i + 1}`
+              })));
+            }
+            if (p.dimensions) setSelectedDimension(p.dimensions);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [id]);
+
   const colors = [
     { name: 'Terracotta Red', bg: 'bg-[#8B3A2B]' },
     { name: 'Deep Navy', bg: 'bg-[#1A237E]' },
     { name: 'Oatmeal Beige', bg: 'bg-[#D4C4B7]' },
   ];
+
+  const title = productData ? productData.title : 'Persian Heritage Runner';
+  const priceFormatted = productData ? (productData.priceFormatted || `$${productData.price.toLocaleString()}`) : '$2,450';
+  const description = productData ? productData.description : 'Hand-knotted in the heart of the Zagros Mountains, this runner embodies centuries of weaving tradition translated for the modern sanctuary. The geometric motifs are rendered in undyed, hand-spun wool, yielding a subtle striation that captures the light.';
+  const availableDimensions = productData?.availableDimensions || ["2.5' x 8'", "3' x 10'", "3' x 12' (Custom)"];
 
   return (
     <div className="bg-background text-on-surface font-body-lg min-h-screen pb-32">
@@ -59,13 +88,13 @@ export default function ProductDetailPage() {
             <div className="relative bg-surface-container-low rounded-xl overflow-hidden aspect-[3/4] md:aspect-square shadow-[0px_10px_30px_rgba(0,0,60,0.05)]">
               <img
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 cursor-crosshair"
-                alt={galleryImages[activeImageIndex].alt}
-                src={galleryImages[activeImageIndex].src}
+                alt={galleryImages[activeImageIndex]?.alt || title}
+                src={galleryImages[activeImageIndex]?.src || galleryImages[0]?.src}
               />
               <button
                 aria-label="Zoom Image"
                 type="button"
-                className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm p-3 rounded-full text-primary hover:opacity-80 transition-opacity shadow-sm"
+                className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm p-3 rounded-full text-primary hover:opacity-80 transition-opacity shadow-sm cursor-pointer"
               >
                 <span className="material-symbols-outlined">zoom_in</span>
               </button>
@@ -76,7 +105,7 @@ export default function ProductDetailPage() {
                     key={i}
                     type="button"
                     onClick={() => setActiveImageIndex(i)}
-                    className={`w-2 h-2 rounded-full transition-all ${
+                    className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
                       activeImageIndex === i ? 'bg-primary w-4' : 'bg-primary/30'
                     }`}
                     aria-label={`Go to image ${i + 1}`}
@@ -115,11 +144,11 @@ export default function ProductDetailPage() {
             {/* Header */}
             <div className="flex flex-col gap-3">
               <h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight">
-                Persian Heritage Runner
+                {title}
               </h2>
               <div className="flex items-center gap-4">
                 <span className="bg-tertiary-fixed text-on-tertiary-fixed font-title-md text-title-md px-4 py-1 rounded-full shadow-sm">
-                  $2,450
+                  {priceFormatted}
                 </span>
                 <span className="text-on-surface-variant font-body-sm text-body-sm">
                   Free Global Shipping
@@ -140,9 +169,9 @@ export default function ProductDetailPage() {
                     onChange={(e) => setSelectedDimension(e.target.value)}
                     className="w-full appearance-none bg-surface-container rounded-lg border-0 text-on-surface font-body-lg py-4 pl-4 pr-12 focus:ring-2 focus:ring-primary outline-none cursor-pointer"
                   >
-                    <option>2.5' x 8'</option>
-                    <option>3' x 10'</option>
-                    <option>3' x 12' (Custom)</option>
+                    {availableDimensions.map(dim => (
+                      <option key={dim}>{dim}</option>
+                    ))}
                   </select>
                   <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">
                     expand_more
@@ -164,7 +193,7 @@ export default function ProductDetailPage() {
                         aria-label={color.name}
                         type="button"
                         onClick={() => setSelectedColorIndex(idx)}
-                        className={`w-10 h-10 rounded-full ${color.bg} border-2 ${
+                        className={`w-10 h-10 rounded-full ${color.bg} border-2 cursor-pointer ${
                           isSelected
                             ? 'border-primary ring-2 ring-transparent ring-offset-2 ring-offset-background'
                             : 'border-transparent hover:border-outline-variant'
@@ -182,7 +211,7 @@ export default function ProductDetailPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab('description')}
-                  className={`pb-3 font-title-md text-title-md transition-colors ${
+                  className={`pb-3 font-title-md text-title-md transition-colors cursor-pointer ${
                     activeTab === 'description'
                       ? 'text-primary border-b-2 border-primary -mb-[1px]'
                       : 'text-on-surface-variant hover:text-primary'
@@ -193,7 +222,7 @@ export default function ProductDetailPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab('specifications')}
-                  className={`pb-3 font-title-md text-title-md transition-colors ${
+                  className={`pb-3 font-title-md text-title-md transition-colors cursor-pointer ${
                     activeTab === 'specifications'
                       ? 'text-primary border-b-2 border-primary -mb-[1px]'
                       : 'text-on-surface-variant hover:text-primary'
@@ -204,7 +233,7 @@ export default function ProductDetailPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab('shipping')}
-                  className={`pb-3 font-title-md text-title-md transition-colors ${
+                  className={`pb-3 font-title-md text-title-md transition-colors cursor-pointer ${
                     activeTab === 'shipping'
                       ? 'text-primary border-b-2 border-primary -mb-[1px]'
                       : 'text-on-surface-variant hover:text-primary'
@@ -217,11 +246,7 @@ export default function ProductDetailPage() {
               <div className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed space-y-4">
                 {activeTab === 'description' && (
                   <>
-                    <p>
-                      Hand-knotted in the heart of the Zagros Mountains, this runner embodies centuries of weaving
-                      tradition translated for the modern sanctuary. The geometric motifs are rendered in undyed,
-                      hand-spun wool, yielding a subtle striation that captures the light.
-                    </p>
+                    <p>{description}</p>
                     <p>
                       Its low pile and dense knotting make it exceptionally durable, ideal for high-traffic corridors
                       while maintaining a soft, tactile warmth underfoot. A quiet statement piece that anchors any
@@ -231,11 +256,11 @@ export default function ProductDetailPage() {
                 )}
                 {activeTab === 'specifications' && (
                   <div className="space-y-2">
-                    <p><strong className="text-on-surface">Material:</strong> 100% Hand-spun Zagros Highland Wool on Cotton Foundation</p>
-                    <p><strong className="text-on-surface">Weave:</strong> Hand-knotted Tibetan weave technique (~160 KPSI)</p>
-                    <p><strong className="text-on-surface">Pile Height:</strong> 0.25 inches (low-profile luxury)</p>
-                    <p><strong className="text-on-surface">Origin:</strong> Zagros Mountain Artisans, Handcrafted</p>
-                    <p><strong className="text-on-surface">Care:</strong> Professional rug cleaning recommended; vacuum regularly on low suction without beater bar</p>
+                    <p><strong className="text-on-surface">Material:</strong> {productData?.specifications?.material || '100% Hand-spun Zagros Highland Wool on Cotton Foundation'}</p>
+                    <p><strong className="text-on-surface">Weave:</strong> {productData?.specifications?.weave || 'Hand-knotted Tibetan weave technique (~160 KPSI)'}</p>
+                    <p><strong className="text-on-surface">Pile Height:</strong> {productData?.specifications?.pileHeight || '0.25 inches (low-profile luxury)'}</p>
+                    <p><strong className="text-on-surface">Origin:</strong> {productData?.specifications?.origin || productData?.origin || 'Zagros Mountain Artisans, Handcrafted'}</p>
+                    <p><strong className="text-on-surface">Care:</strong> {productData?.specifications?.care || 'Professional rug cleaning recommended; vacuum regularly on low suction'}</p>
                   </div>
                 )}
                 {activeTab === 'shipping' && (
@@ -258,7 +283,7 @@ export default function ProductDetailPage() {
             type="button"
             aria-label="Add to Wishlist"
             onClick={() => setIsWishlisted(!isWishlisted)}
-            className={`flex items-center justify-center p-4 rounded-lg border border-tertiary ${
+            className={`flex items-center justify-center p-4 rounded-lg border border-tertiary cursor-pointer ${
               isWishlisted ? 'bg-tertiary text-on-tertiary' : 'text-tertiary hover:bg-tertiary/5'
             } transition-colors shadow-sm`}
           >
@@ -271,11 +296,11 @@ export default function ProductDetailPage() {
           </button>
           <Link
             to="/cart"
-            className="flex-1 bg-secondary text-on-secondary font-label-caps text-label-caps uppercase tracking-widest py-4 px-8 rounded-lg shadow-[0px_10px_30px_rgba(0,0,60,0.05)] hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+            className="flex-1 bg-secondary text-on-secondary font-label-caps text-label-caps uppercase tracking-widest py-4 px-8 rounded-lg shadow-[0px_10px_30px_rgba(0,0,60,0.05)] hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <span>Add to Cart</span>
             <span className="font-title-md text-title-md">·</span>
-            <span>$2,450</span>
+            <span>{priceFormatted}</span>
           </Link>
         </div>
       </div>

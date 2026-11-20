@@ -2,12 +2,89 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import TopAppBar from '../components/TopAppBar';
 import BottomNavBar from '../components/BottomNavBar';
+import { createOrder } from '../services/api';
 
 export default function CartCheckoutPage() {
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState('credit_card');
   const [quantity1, setQuantity1] = useState(1);
   const [quantity2, setQuantity2] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [formData, setFormData] = useState({
+    firstName: 'Jane',
+    lastName: 'Doe',
+    address: '123 Luxury Lane',
+    city: 'New York',
+    state: 'NY',
+    zipCode: '10001',
+    cardNumber: '4242 •••• •••• 4242',
+    expiry: '08/28',
+    cvc: '888'
+  });
+
+  const handleChange = (e) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const item1Price = 4200;
+  const item2Price = 6850;
+  const subtotal = quantity1 * item1Price + quantity2 * item2Price;
+  const delivery = 250;
+  const tax = Math.round(subtotal * 0.08);
+  const total = subtotal + delivery + tax;
+
+  const handleCheckout = async () => {
+    setIsSubmitting(true);
+    try {
+      const orderPayload = {
+        items: [
+          {
+            title: 'Tabriz Silk Blend',
+            size: "8' x 10'",
+            origin: 'Iran',
+            price: item1Price,
+            quantity: quantity1
+          },
+          {
+            title: 'Oushak Vintage',
+            size: "9' x 12'",
+            origin: 'Turkey',
+            price: item2Price,
+            quantity: quantity2
+          }
+        ],
+        shipping: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          address: formData.address,
+          city: formData.city,
+          state: formData.state,
+          zipCode: formData.zipCode
+        },
+        paymentMethod,
+        totals: {
+          subtotal,
+          delivery,
+          tax,
+          total
+        }
+      };
+
+      const res = await createOrder(orderPayload);
+      if (res && res.data && res.data.orderId) {
+        navigate(`/order-tracking?orderId=${res.data.orderId}`);
+      } else {
+        navigate('/order-tracking');
+      }
+    } catch (err) {
+      console.error('Checkout error:', err);
+      // Fallback navigation
+      navigate('/order-tracking');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="bg-background text-on-background font-body-lg min-h-screen flex flex-col">
@@ -50,7 +127,7 @@ export default function CartCheckoutPage() {
                       <h3 className="font-title-md text-on-surface">Tabriz Silk Blend</h3>
                       <p className="font-body-sm text-on-surface-variant">Size: 8' x 10' • Origin: Iran</p>
                     </div>
-                    <span className="font-title-md text-primary">$4,200</span>
+                    <span className="font-title-md text-primary">${item1Price.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center mt-4">
                     <div className="flex items-center border border-outline-variant rounded-DEFAULT">
@@ -96,7 +173,7 @@ export default function CartCheckoutPage() {
                       <h3 className="font-title-md text-on-surface">Oushak Vintage</h3>
                       <p className="font-body-sm text-on-surface-variant">Size: 9' x 12' • Origin: Turkey</p>
                     </div>
-                    <span className="font-title-md text-primary">$6,850</span>
+                    <span className="font-title-md text-primary">${item2Price.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center mt-4">
                     <div className="flex items-center border border-outline-variant rounded-DEFAULT">
@@ -136,29 +213,71 @@ export default function CartCheckoutPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
                 <div className="flex flex-col gap-2">
                   <label className="font-label-caps text-on-surface-variant">First Name</label>
-                  <input className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg" placeholder="Jane" type="text" />
+                  <input
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg"
+                    placeholder="Jane"
+                    type="text"
+                  />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-label-caps text-on-surface-variant">Last Name</label>
-                  <input className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg" placeholder="Doe" type="text" />
+                  <input
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg"
+                    placeholder="Doe"
+                    type="text"
+                  />
                 </div>
               </div>
               <div className="flex flex-col gap-2">
                 <label className="font-label-caps text-on-surface-variant">Address</label>
-                <input className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg" placeholder="123 Luxury Lane" type="text" />
+                <input
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg"
+                  placeholder="123 Luxury Lane"
+                  type="text"
+                />
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-gutter">
                 <div className="flex flex-col gap-2 md:col-span-1">
                   <label className="font-label-caps text-on-surface-variant">City</label>
-                  <input className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg" placeholder="New York" type="text" />
+                  <input
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg"
+                    placeholder="New York"
+                    type="text"
+                  />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-label-caps text-on-surface-variant">State</label>
-                  <input className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg" placeholder="NY" type="text" />
+                  <input
+                    name="state"
+                    value={formData.state}
+                    onChange={handleChange}
+                    className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg"
+                    placeholder="NY"
+                    type="text"
+                  />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-label-caps text-on-surface-variant">ZIP Code</label>
-                  <input className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg" placeholder="10001" type="text" />
+                  <input
+                    name="zipCode"
+                    value={formData.zipCode}
+                    onChange={handleChange}
+                    className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg"
+                    placeholder="10001"
+                    type="text"
+                  />
                 </div>
               </div>
             </div>
@@ -259,6 +378,9 @@ export default function CartCheckoutPage() {
                 <label className="font-label-caps text-on-surface-variant">Card Number</label>
                 <div className="relative">
                   <input
+                    name="cardNumber"
+                    value={formData.cardNumber}
+                    onChange={handleChange}
                     className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg w-full"
                     placeholder="0000 0000 0000 0000"
                     type="text"
@@ -272,6 +394,9 @@ export default function CartCheckoutPage() {
                 <div className="flex flex-col gap-2">
                   <label className="font-label-caps text-on-surface-variant">Expiry Date</label>
                   <input
+                    name="expiry"
+                    value={formData.expiry}
+                    onChange={handleChange}
                     className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg"
                     placeholder="MM/YY"
                     type="text"
@@ -280,6 +405,9 @@ export default function CartCheckoutPage() {
                 <div className="flex flex-col gap-2">
                   <label className="font-label-caps text-on-surface-variant">CVC</label>
                   <input
+                    name="cvc"
+                    value={formData.cvc}
+                    onChange={handleChange}
                     className="bg-background border-none border-b-2 border-surface-dim focus:border-primary focus:ring-0 px-0 py-2 font-body-lg"
                     placeholder="123"
                     type="text"
@@ -296,29 +424,30 @@ export default function CartCheckoutPage() {
             <h2 className="font-title-md text-primary border-b border-surface-variant pb-4">Order Summary</h2>
             <div className="flex flex-col gap-4 py-4">
               <div className="flex justify-between font-body-lg text-on-surface">
-                <span>Subtotal (2 items)</span>
-                <span>$11,050</span>
+                <span>Subtotal ({quantity1 + quantity2} items)</span>
+                <span>${subtotal.toLocaleString()}</span>
               </div>
               <div className="flex justify-between font-body-lg text-on-surface">
                 <span>White Glove Delivery</span>
-                <span>$250</span>
+                <span>${delivery.toLocaleString()}</span>
               </div>
               <div className="flex justify-between font-body-lg text-on-surface">
                 <span>Estimated Tax</span>
-                <span>$884</span>
+                <span>${tax.toLocaleString()}</span>
               </div>
             </div>
             <div className="flex justify-between font-headline-lg-mobile text-primary border-t border-surface-variant pt-4 pb-6">
               <span>Total</span>
-              <span>$12,184</span>
+              <span>${total.toLocaleString()}</span>
             </div>
             <button
               type="button"
-              onClick={() => navigate('/order-tracking')}
-              className="bg-primary text-on-primary font-title-md py-4 rounded-full w-full lifted-shadow hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
+              disabled={isSubmitting}
+              onClick={handleCheckout}
+              className="bg-primary text-on-primary font-title-md py-4 rounded-full w-full lifted-shadow hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
               <span className="material-symbols-outlined icon-fill">lock</span>
-              Secure Checkout
+              {isSubmitting ? 'Processing Order...' : 'Secure Checkout'}
             </button>
             <p className="font-body-sm text-center text-on-surface-variant mt-2 flex items-center justify-center gap-1">
               <span className="material-symbols-outlined text-[16px]">verified</span>
