@@ -1,6 +1,67 @@
 # Aureate — Luxury Textile Marketplace
 
-A modern, full-stack luxury textile and bespoke rug marketplace built with **React**, **Tailwind CSS v4**, and **Node.js / Express**.
+Luxury Marketplace
+
+About the Project
+
+Luxury Marketplace is a full-stack e-commerce web application designed for browsing and purchasing luxury products. It provides users with a simple and user-friendly shopping experience.
+
+Features
+
+* User Registration and Login
+* Browse Luxury Products
+* Product Details
+* Shopping Cart
+* Checkout
+* Custom Orders
+* Order Tracking
+* User Profile Dashboard
+
+Technologies Used
+
+Frontend
+
+Backend: Node.js 
+
+Project Structure
+
+* frontend/ – Antigravity
+* backend/ - Node.js
+
+Installation and Setup
+
+1. Clone the Repository
+
+git clone https://github.com/ruhanidhingra7543-cmd/luxury-marketplace.git
+cd luxury-marketplace
+
+2. Setup Backend
+
+cd backend
+npm install
+
+3. Start Backend
+
+Use the start command defined in your backend package.json.
+
+4. Setup Frontend
+
+Open another terminal:
+
+cd frontend
+npm install
+
+5. Start Frontend
+
+Use the start command defined in your frontend package.json.
+
+Project Purpose
+
+This project was developed as an academic full-stack development assessment.
+
+Author
+
+Ruhani Dhingra
 
 ---
 
